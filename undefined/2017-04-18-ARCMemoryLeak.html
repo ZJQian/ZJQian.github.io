@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="index.ios.js," />
+  <meta name="keywords" content="ARC内存泄漏," />
 
 
 
@@ -83,18 +83,20 @@
 
 
 
-<meta name="description" content="撸代码之前还是要搞清楚作用比较好，不然洋洋洒洒的撸了个天昏地暗，却不知道为什么用这个姿势撸，不就尴尬了吗？要知其然，还要知其所以然，论掌握撸代码姿势的重要性！">
-<meta name="keywords" content="index.ios.js">
+<meta name="description" content="已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。">
+<meta name="keywords" content="ARC内存泄漏">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React-Native 之index.ios.js解读">
-<meta property="og:url" content="http://yoursite.com/posts/2017-03-22-explainIndexiosjs.html">
+<meta property="og:title" content="ARC下的内存泄漏">
+<meta property="og:url" content="http://yoursite.com/undefined/2017-04-18-ARCMemoryLeak.html">
 <meta property="og:site_name" content="ZJQian&#39;s Blogs">
-<meta property="og:description" content="撸代码之前还是要搞清楚作用比较好，不然洋洋洒洒的撸了个天昏地暗，却不知道为什么用这个姿势撸，不就尴尬了吗？要知其然，还要知其所以然，论掌握撸代码姿势的重要性！">
+<meta property="og:description" content="已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20170418105339918?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React-Native 之index.ios.js解读">
-<meta name="twitter:description" content="撸代码之前还是要搞清楚作用比较好，不然洋洋洒洒的撸了个天昏地暗，却不知道为什么用这个姿势撸，不就尴尬了吗？要知其然，还要知其所以然，论掌握撸代码姿势的重要性！">
+<meta name="twitter:title" content="ARC下的内存泄漏">
+<meta name="twitter:description" content="已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170418105339918?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -124,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/posts/2017-03-22-explainIndexiosjs.html"/>
+  <link rel="canonical" href="http://yoursite.com/undefined/2017-04-18-ARCMemoryLeak.html"/>
 
 
 
 
 
-  <title>React-Native 之index.ios.js解读 | ZJQian's Blogs</title>
+  <title>ARC下的内存泄漏 | ZJQian's Blogs</title>
   
 
 
@@ -267,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/2017-03-22-explainIndexiosjs.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/undefined/2017-04-18-ARCMemoryLeak.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZJQian">
@@ -284,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">React-Native 之index.ios.js解读</h1>
+          <h1 class="post-title" itemprop="name headline">ARC下的内存泄漏</h1>
         
 
         <div class="post-meta">
@@ -296,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T11:23:30+08:00">
-                2017-03-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-18T10:59:54+08:00">
+                2017-04-18
               </time>
             
 
@@ -319,8 +321,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react-native学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">react-native学习笔记</span>
+                  <a href="/categories/iOS-实用/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS 实用</span>
                   </a>
                 </span>
 
@@ -337,8 +339,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/2017-03-22-explainIndexiosjs.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/2017-03-22-explainIndexiosjs.html" itemprop="commentsCount"></span>
+                <a href="/undefined/2017-04-18-ARCMemoryLeak.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/undefined/2017-04-18-ARCMemoryLeak.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -366,39 +368,36 @@
       
 
       
-        <p>撸代码之前还是要搞清楚作用比较好，不然洋洋洒洒的撸了个天昏地暗，却不知道为什么用这个姿势撸，不就尴尬了吗？要知其然，还要知其所以然，论掌握撸代码姿势的重要性！<br><a id="more"></a></p>
-<hr>
-<p>React.native是facebook开源的一套基于JavaScript的开源框架，<br>很方便用来开发移动设备的app。<br>而且，方便及时更新app的UI与数据，也很方便部署。</p>
-<hr>
-<p>在react-native的ios项目中，界面搭建部分是一个js文件：index.ios.js。下面对这个文件进行一下解读，方便后续开发中明白各个部分的作用。</p>
-<h2 id="1、引用React"><a href="#1、引用React" class="headerlink" title="1、引用React"></a><strong>1、引用React</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br></pre></td></tr></table></figure>
-<h2 id="2、控件的引入"><a href="#2、控件的引入" class="headerlink" title="2、控件的引入"></a><strong>2、控件的引入</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123;</span><br><span class="line">AppRegistry,</span><br><span class="line">StyleSheet,</span><br><span class="line">Text,</span><br><span class="line">View,</span><br><span class="line">ListView,</span><br><span class="line">TouchableOpacity</span><br><span class="line">&#125; from &apos;react-native&apos;;</span><br></pre></td></tr></table></figure>
-<h2 id="3、样式设置"><a href="#3、样式设置" class="headerlink" title="3、样式设置"></a><strong>3、样式设置</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//设置样式</span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">container: &#123;</span><br><span class="line">flex: 1,</span><br><span class="line">justifyContent: &apos;center&apos;,</span><br><span class="line">alignItems: &apos;center&apos;,</span><br><span class="line">backgroundColor: &apos;#F5FCFF&apos;,</span><br><span class="line">&#125;,</span><br><span class="line">welcome: &#123;</span><br><span class="line">fontSize: 20,</span><br><span class="line">textAlign: &apos;center&apos;,</span><br><span class="line">margin: 10,</span><br><span class="line">&#125;,</span><br><span class="line">instructions: &#123;</span><br><span class="line">textAlign: &apos;center&apos;,</span><br><span class="line">color: &apos;#333333&apos;,</span><br><span class="line">marginBottom: 5,</span><br><span class="line">&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>作用：定义了一段应用在 “Hello World” 文本上的样式。</p>
-<p><strong>React Native 使用 CSS 来定义应用界面的样式。</strong></p>
-<h2 id="4、创建React组件对应的类"><a href="#4、创建React组件对应的类" class="headerlink" title="4、创建React组件对应的类"></a><strong>4、创建React组件对应的类</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">export default class HelloWorld extends Component &#123;</span><br><span class="line">render() &#123;</span><br><span class="line">return (</span><br><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">&lt;Text style=&#123;styles.welcome&#125;&gt;</span><br><span class="line">Welcome to React Native!</span><br><span class="line">&lt;/Text&gt;</span><br><span class="line">&lt;Text style=&#123;styles.instructions&#125;&gt;</span><br><span class="line">To get started, edit index.android.js</span><br><span class="line">&lt;/Text&gt;</span><br><span class="line">&lt;Text style=&#123;styles.instructions&#125;&gt;</span><br><span class="line">Double tap R on your keyboard to reload,&#123;&apos;\n&apos;&#125;</span><br><span class="line">Shake or press menu button for dev menu</span><br><span class="line">&lt;/Text&gt;</span><br><span class="line">&lt;/View&gt;</span><br><span class="line">);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>作用：描述将要创建的组件，包括各种行为和属性。</p>
-<h2 id="5、解释一下"><a href="#5、解释一下" class="headerlink" title="5、解释一下"></a><strong>5、解释一下</strong></h2><ul>
-<li>组件渲染的方法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">return ();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：只有当组件被渲染时，必须实现render接口方法，因为，只有render方法，是用于输出内容组件内容的；其他接口方法，都是可选的。</p>
+        <p>已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。<br><a id="more"></a></p>
+<p>ARC 是帮助我们做对象内存管理的一套机制，使得我们以前在 MRC 模式下管理内存工作量能在 ARC 模式下得到缓解。正如苹果官方文档上所描述的：<br>Automatic Reference Counting (ARC) is a compiler feature that provides automatic memory management of Objective-C objects.<br>可见 ARC 是编译时特性，它没有改变 Objective-C 引用计数式内存管理的本质，更不是 GC（垃圾回收）。<br>也就是说只要我们稍不注意，隐式的持有或复制对象就会造成内存泄露。</p>
+<h1 id="NSNotificationcenter"><a href="#NSNotificationcenter" class="headerlink" title="NSNotificationcenter"></a><strong>NSNotificationcenter</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(method:) name:@&quot;notiName&quot; object:nil];</span><br></pre></td></tr></table></figure>
+<p>这里添加观察者其实是不会造成内存泄漏的，但是，但是，但是……如果self被销毁，当在调用post消息的时候，就会报对象被释放的错误，导致闪退，所以在添加观察者的对象，一定要在它被销毁的时候从消息中心删除！</p>
+<p>就是在注册通知的地方加上这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)dealloc &#123;</span><br><span class="line"></span><br><span class="line">    [[NSNotificationCenter defaultCenter]removeObserver:self];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="NSTimer"><a href="#NSTimer" class="headerlink" title="NSTimer"></a><strong>NSTimer</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(method:) userInfo:nil repeats:YES];</span><br></pre></td></tr></table></figure>
+<p>上面的timer为了防止 target 被释放而导致的程序异常，timer 会持有 target， self 持有 timer，timer 在初始化时持有 self，造成循环引用。解决的方法就是使用 <code>invalidate</code> 方法销掉 timer。</p>
+<h1 id="delegate属性的强引用"><a href="#delegate属性的强引用" class="headerlink" title="delegate属性的强引用"></a><strong>delegate属性的强引用</strong></h1><p>把<code>delegate</code>声明为<code>strong</code>属性容易导致内存溢出 。</p>
+<p>解决办法是把<code>delegate</code>属性的<code>strong</code>改为<code>assign</code>或者<code>weak</code>即可。</p>
+<blockquote>
 <ul>
-<li>标签<view>定义视图</view></li>
+<li>当用<code>weak</code>或<code>assign</code>修饰的时候，指明该对象并不负责保持<code>delegate</code>这个对象，<code>delegate</code>这个对象的销毁由外部控制。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
-<p>作用：设置显示区域，相当于iOS中的UIView控件（Objective-c和Swift）</p>
+</blockquote>
+<blockquote>
 <ul>
-<li>标签<text>定义文本</text></li>
+<li>当用<code>strong</code>修饰的时候，该对象强引用<code>delegate</code>，外界不能销毁<code>delegate</code>对象，会导致循环引用(<code>Retain Cycles</code>)。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Text style=&#123;styles.welcome&#125;&gt;</span><br><span class="line">Welcome to React Native!</span><br><span class="line">&lt;/Text&gt;</span><br></pre></td></tr></table></figure>
-<p>作用：设置并显示字符串，相当于iOS的UILabel控件（Objective-c和Swift）。</p>
-<ul>
-<li>定义程序入口</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AppRegistry.registerComponent(&apos;HelloWorld&apos;, () =&gt; HelloWorld);</span><br></pre></td></tr></table></figure>
-<p>作用：用AppRegistry的registerComponent( )方法，定义了App的入口，并提供了根组件。</p>
-<p>转自：<a href="http://blog.csdn.net/maoyingyong/article/details/46439951" target="_blank" rel="noopener">http://blog.csdn.net/maoyingyong/article/details/46439951</a></p>
+</blockquote>
+<h1 id="WKWebView"><a href="#WKWebView" class="headerlink" title="WKWebView"></a><strong>WKWebView</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_webView.configuration.userContentController addScriptMessageHandler:self name:clickName];</span><br></pre></td></tr></table></figure>
+<p>添加addScriptMessageHandler之后，必须在vc销毁前把它移除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_webView.configuration.userContentController removeScriptMessageHandlerForName:clickName];</span><br></pre></td></tr></table></figure>
+<p>和<code>NSNotification</code> 很类似。</p>
+<h1 id="Block"><a href="#Block" class="headerlink" title="Block"></a><strong>Block</strong></h1><p><img src="http://img.blog.csdn.net/20170418105339918?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>上面图片中就是一典型案例，红色部分就是修改之前导致内存溢出的代码，我们来分析一下： </p>
+<p>上面的success block应该是self持有，而在success中有持有了self，导致self和 block 的循环引用，造成内存泄露！ </p>
+<p>说到底还是造成了循环引用导致了内存泄漏，所以我们要打破循环，释放对象，这里我们把self变成了弱引用，打破循环引用。</p>
+<p><strong>以上几种情况可能通过instrument 是查看不出来的，至少是没有小红叉的。我们通过instruments查看所有VC的引用计数才找到那些VC是发生了内存泄露。</strong></p>
+<p><a href="http://blog.csdn.net/zhuchuanwu2013/article/details/51284733" target="_blank" rel="noopener">参考他的</a></p>
 
       
     </div>
@@ -416,7 +415,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/index-ios-js/" rel="tag"># index.ios.js</a>
+            <a href="/tags/ARC内存泄漏/" rel="tag"># ARC内存泄漏</a>
           
         </div>
       
@@ -429,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/2017-03-22-react-native-listView.html" rel="next" title="React-Native 之ListView">
-                <i class="fa fa-chevron-left"></i> React-Native 之ListView
+              <a href="/undefined/2017-04-16-visitJinShanCityBeach.html" rel="next" title="金山城市沙滩游">
+                <i class="fa fa-chevron-left"></i> 金山城市沙滩游
               </a>
             
           </div>
@@ -439,8 +438,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/2017-03-22-rnPortCrash.html" rel="prev" title="React-Native 奇葩报错">
-                React-Native 奇葩报错 <i class="fa fa-chevron-right"></i>
+              <a href="/undefined/2017-04-21-getCrashBlog.html" rel="prev" title="iOS 获取crash日志">
+                iOS 获取crash日志 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、引用React"><span class="nav-number">1.</span> <span class="nav-text">1、引用React</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、控件的引入"><span class="nav-number">2.</span> <span class="nav-text">2、控件的引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、样式设置"><span class="nav-number">3.</span> <span class="nav-text">3、样式设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、创建React组件对应的类"><span class="nav-number">4.</span> <span class="nav-text">4、创建React组件对应的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、解释一下"><span class="nav-number">5.</span> <span class="nav-text">5、解释一下</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NSNotificationcenter"><span class="nav-number">1.</span> <span class="nav-text">NSNotificationcenter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NSTimer"><span class="nav-number">2.</span> <span class="nav-text">NSTimer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#delegate属性的强引用"><span class="nav-number">3.</span> <span class="nav-text">delegate属性的强引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WKWebView"><span class="nav-number">4.</span> <span class="nav-text">WKWebView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block"><span class="nav-number">5.</span> <span class="nav-text">Block</span></a></li></ol></div>
             
 
           </div>
