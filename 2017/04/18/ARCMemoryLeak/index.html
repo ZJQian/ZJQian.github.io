@@ -5,15 +5,22 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>ARC下的内存泄漏 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。">
+<meta name="keywords" content="ARC内存泄漏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARC下的内存泄漏">
+<meta property="og:url" content="http://yoursite.com/2017/04/18/ARCMemoryLeak/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.blog.csdn.net/20170418105339918?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="ARC下的内存泄漏">
+<meta name="twitter:description" content="已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170418105339918?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,216 +67,96 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/08/android-canvas/" class="archive-article-date">
-  <time datetime="2017-06-08T03:56:31.000Z" itemprop="datePublished">Jun 8</time>
+        <section id="main"><article id="post-ARCMemoryLeak" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/18/ARCMemoryLeak/" class="article-date">
+  <time datetime="2017-04-18T02:59:54.000Z" itemprop="datePublished">2017-04-18</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS-实用/">iOS 实用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+    <h1 class="article-title" itemprop="name">
+      ARC下的内存泄漏
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/07/hello-world/" class="archive-article-date">
-  <time datetime="2017-06-07T13:00:30.000Z" itemprop="datePublished">Jun 7</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/07/hello-world/">Hello World</a>
-    </h1>
-  
+        <p>已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。<br><a id="more"></a></p>
+<p>ARC 是帮助我们做对象内存管理的一套机制，使得我们以前在 MRC 模式下管理内存工作量能在 ARC 模式下得到缓解。正如苹果官方文档上所描述的：<br>Automatic Reference Counting (ARC) is a compiler feature that provides automatic memory management of Objective-C objects.<br>可见 ARC 是编译时特性，它没有改变 Objective-C 引用计数式内存管理的本质，更不是 GC（垃圾回收）。<br>也就是说只要我们稍不注意，隐式的持有或复制对象就会造成内存泄露。</p>
+<h1 id="NSNotificationcenter"><a href="#NSNotificationcenter" class="headerlink" title="NSNotificationcenter"></a><strong>NSNotificationcenter</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(method:) name:@&quot;notiName&quot; object:nil];</span><br></pre></td></tr></table></figure>
+<p>这里添加观察者其实是不会造成内存泄漏的，但是，但是，但是……如果self被销毁，当在调用post消息的时候，就会报对象被释放的错误，导致闪退，所以在添加观察者的对象，一定要在它被销毁的时候从消息中心删除！</p>
+<p>就是在注册通知的地方加上这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)dealloc &#123;</span><br><span class="line"></span><br><span class="line">    [[NSNotificationCenter defaultCenter]removeObserver:self];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="NSTimer"><a href="#NSTimer" class="headerlink" title="NSTimer"></a><strong>NSTimer</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(method:) userInfo:nil repeats:YES];</span><br></pre></td></tr></table></figure>
+<p>上面的timer为了防止 target 被释放而导致的程序异常，timer 会持有 target， self 持有 timer，timer 在初始化时持有 self，造成循环引用。解决的方法就是使用 <code>invalidate</code> 方法销掉 timer。</p>
+<h1 id="delegate属性的强引用"><a href="#delegate属性的强引用" class="headerlink" title="delegate属性的强引用"></a><strong>delegate属性的强引用</strong></h1><p>把<code>delegate</code>声明为<code>strong</code>属性容易导致内存溢出 。</p>
+<p>解决办法是把<code>delegate</code>属性的<code>strong</code>改为<code>assign</code>或者<code>weak</code>即可。</p>
+<blockquote>
+<ul>
+<li>当用<code>weak</code>或<code>assign</code>修饰的时候，指明该对象并不负责保持<code>delegate</code>这个对象，<code>delegate</code>这个对象的销毁由外部控制。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>当用<code>strong</code>修饰的时候，该对象强引用<code>delegate</code>，外界不能销毁<code>delegate</code>对象，会导致循环引用(<code>Retain Cycles</code>)。</li>
+</ul>
+</blockquote>
+<h1 id="WKWebView"><a href="#WKWebView" class="headerlink" title="WKWebView"></a><strong>WKWebView</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_webView.configuration.userContentController addScriptMessageHandler:self name:clickName];</span><br></pre></td></tr></table></figure>
+<p>添加addScriptMessageHandler之后，必须在vc销毁前把它移除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_webView.configuration.userContentController removeScriptMessageHandlerForName:clickName];</span><br></pre></td></tr></table></figure>
+<p>和<code>NSNotification</code> 很类似。</p>
+<h1 id="Block"><a href="#Block" class="headerlink" title="Block"></a><strong>Block</strong></h1><p><img src="http://img.blog.csdn.net/20170418105339918?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>上面图片中就是一典型案例，红色部分就是修改之前导致内存溢出的代码，我们来分析一下： </p>
+<p>上面的success block应该是self持有，而在success中有持有了self，导致self和 block 的循环引用，造成内存泄露！ </p>
+<p>说到底还是造成了循环引用导致了内存泄漏，所以我们要打破循环，释放对象，这里我们把self变成了弱引用，打破循环引用。</p>
+<p><strong>以上几种情况可能通过instrument 是查看不出来的，至少是没有小红叉的。我们通过instruments查看所有VC的引用计数才找到那些VC是发生了内存泄露。</strong></p>
+<p><a href="http://blog.csdn.net/zhuchuanwu2013/article/details/51284733" target="_blank" rel="noopener">参考他的</a></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/05/android-listView/" class="archive-article-date">
-  <time datetime="2017-06-05T08:34:46.000Z" itemprop="datePublished">Jun 5</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/10/android-onClick/" class="archive-article-date">
-  <time datetime="2017-05-10T05:25:35.000Z" itemprop="datePublished">May 10</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/18/ARCMemoryLeak/" data-id="cjg1ulpbe0000xiximstea9oz" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/03/rn-integration-iosNative/" class="archive-article-date">
-  <time datetime="2017-05-03T02:25:39.000Z" itemprop="datePublished">May 3</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARC内存泄漏/">ARC内存泄漏</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/21/getCrashBlog/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS 获取crash日志
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/16/visitJinShanCityBeach/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">金山城市沙滩游</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/03/studying-thinking/" class="archive-article-date">
-  <time datetime="2017-05-03T02:01:06.000Z" itemprop="datePublished">May 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/03/studying-thinking/">不思考，不读书</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/27/react-native-fetch/" class="archive-article-date">
-  <time datetime="2017-04-27T05:56:46.000Z" itemprop="datePublished">Apr 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/27/react-native-fetch/">React-Native Fetch网络请求</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/21/getCrashBlog/" class="archive-article-date">
-  <time datetime="2017-04-21T02:39:05.000Z" itemprop="datePublished">Apr 21</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/21/getCrashBlog/">iOS 获取crash日志</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/18/ARCMemoryLeak/" class="archive-article-date">
-  <time datetime="2017-04-18T02:59:54.000Z" itemprop="datePublished">Apr 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/18/ARCMemoryLeak/">ARC下的内存泄漏</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/16/visitJinShanCityBeach/" class="archive-article-date">
-  <time datetime="2017-04-16T07:38:24.000Z" itemprop="datePublished">Apr 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/16/visitJinShanCityBeach/">金山城市沙滩游</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         

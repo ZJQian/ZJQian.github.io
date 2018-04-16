@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>iOS 本地推送（通知） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="以前一直迷惑，本地推送到底有什么用，后来仔细想了想，确实有用（废话，不然苹果爸爸干嘛开发这个？手动鄙视自己！）">
+<meta name="keywords" content="本地推送">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 本地推送（通知）">
+<meta property="og:url" content="http://yoursite.com/2017/04/14/localNotification/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="以前一直迷惑，本地推送到底有什么用，后来仔细想了想，确实有用（废话，不然苹果爸爸干嘛开发这个？手动鄙视自己！）">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 本地推送（通知）">
+<meta name="twitter:description" content="以前一直迷惑，本地推送到底有什么用，后来仔细想了想，确实有用（废话，不然苹果爸爸干嘛开发这个？手动鄙视自己！）">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-localNotification" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/14/localNotification/" class="article-date">
+  <time datetime="2017-04-14T03:17:32.000Z" itemprop="datePublished">2017-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS-推送/">iOS 推送</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS 本地推送（通知）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以前一直迷惑，本地推送到底有什么用，后来仔细想了想，确实有用（废话，不然苹果爸爸干嘛开发这个？手动鄙视自己！）<br><a id="more"></a></p>
+<p><strong>本地通知服务 主要处理基于时间行为的通知。比如定时通知用户该起床撒尿了。</strong></p>
+<p>就是这么个用处！嗯，是这样吧？是的！</p>
+<p>在iOS10苹果废弃了之前的<code>UILocalNotification</code>，而采用了新的<code>UserNotifications Framework</code>来推送通知。现在先说一下iOS10之前的本地推送流程！</p>
+<h2 id="iOS-10之前"><a href="#iOS-10之前" class="headerlink" title="iOS 10之前"></a><strong>iOS 10之前</strong></h2><h3 id="注册通知"><a href="#注册通知" class="headerlink" title="注册通知"></a><strong>注册通知</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    // Override point for customization after application launch.</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    if ([[UIDevice currentDevice].systemVersion floatValue] &gt; 8.0) &#123;</span><br><span class="line">        </span><br><span class="line">        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];</span><br><span class="line">        [application registerUserNotificationSettings:settings];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="发送通知"><a href="#发送通知" class="headerlink" title="发送通知"></a><strong>发送通知</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 1.创建一个本地通知</span><br><span class="line">    UILocalNotification *localNote = [[UILocalNotification alloc] init];</span><br><span class="line">    </span><br><span class="line">    // 1.1.设置通知发出的时间</span><br><span class="line">    localNote.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];</span><br><span class="line">    </span><br><span class="line">    // 1.2.设置通知内容</span><br><span class="line">    localNote.alertBody = @&quot;这是一个本地推送&quot;;</span><br><span class="line">    </span><br><span class="line">    // 1.3.设置锁屏时,字体下方显示的一个文字</span><br><span class="line">    localNote.alertAction = @&quot;看我&quot;;</span><br><span class="line">    localNote.hasAction = YES;</span><br><span class="line">    </span><br><span class="line">    // 1.4.设置启动图片(通过通知打开的)</span><br><span class="line">    localNote.alertLaunchImage = @&quot;../Documents/1.jpg&quot;;</span><br><span class="line">    </span><br><span class="line">    // 1.5.设置通过到来的声音</span><br><span class="line">    localNote.soundName = UILocalNotificationDefaultSoundName;</span><br><span class="line">    </span><br><span class="line">    // 1.6.设置应用图标左上角显示的数字</span><br><span class="line">    localNote.applicationIconBadgeNumber = 1;</span><br><span class="line">    </span><br><span class="line">    // 1.7.设置一些额外的信息</span><br><span class="line">    localNote.userInfo = @&#123;@&quot;hello&quot; : @&quot;how are you&quot;, @&quot;msg&quot; : @&quot;success&quot;&#125;;</span><br><span class="line">    </span><br><span class="line">    // 2.执行通知</span><br><span class="line">    [[UIApplication sharedApplication] scheduleLocalNotification:localNote];</span><br></pre></td></tr></table></figure>
+<p>这里要说一点，就是iOS系统限制了注册本地推送的数量，最大的注册量为64条。</p>
+<h3 id="接收推送"><a href="#接收推送" class="headerlink" title="接收推送"></a><strong>接收推送</strong></h3><ul>
+<li>应用在前台或后台，未被杀死时。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//程序处于前台或后台时调用</span><br><span class="line">- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification&#123;</span><br><span class="line"></span><br><span class="line">    NSLog(@&quot;333这里被调用&quot;);</span><br><span class="line">    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@&quot;Title&quot; message:@&quot;程序在前台或后台，未被杀死，点击通知栏调用&quot; delegate:self cancelButtonTitle:@&quot;cancel&quot; otherButtonTitles:@&quot;ok&quot;, nil];</span><br><span class="line">    [alert show];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>程序已被杀死时</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    // Override point for customization after application launch.</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    if (launchOptions[UIApplicationLaunchOptionsLocalNotificationKey]) &#123;</span><br><span class="line">        //添加处理代码</span><br><span class="line">        </span><br><span class="line">        NSLog(@&quot;666这里被调用&quot;);</span><br><span class="line">        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@&quot;Title&quot; message:@&quot;程序已被杀死，点击通知栏调用&quot; delegate:self cancelButtonTitle:@&quot;cancel&quot; otherButtonTitles:@&quot;ok&quot;, nil];</span><br><span class="line">        [alert show];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="iOS-10之后"><a href="#iOS-10之后" class="headerlink" title="iOS 10之后"></a><strong>iOS 10之后</strong></h2><p>先导入这个东西<code>#import &lt;UserNotifications/UserNotifications.h&gt;</code></p>
+<h3 id="注册通知-1"><a href="#注册通知-1" class="headerlink" title="注册通知"></a><strong>注册通知</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    // Override point for customization after application launch.</span><br><span class="line">    </span><br><span class="line">    // 使用 UNUserNotificationCenter 来管理通知</span><br><span class="line">    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];</span><br><span class="line">    //监听回调事件</span><br><span class="line">    center.delegate = self;</span><br><span class="line">    </span><br><span class="line">    //iOS 10 使用以下方法注册，才能得到授权</span><br><span class="line">    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound + UNAuthorizationOptionBadge)</span><br><span class="line">                          completionHandler:^(BOOL granted, NSError * _Nullable error) &#123;</span><br><span class="line">                              // Enable or disable features based on authorization.</span><br><span class="line">                          &#125;];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="发送通知-1"><a href="#发送通知-1" class="headerlink" title="发送通知"></a><strong>发送通知</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 使用 UNUserNotificationCenter 来管理通知</span><br><span class="line">    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];</span><br><span class="line">    </span><br><span class="line">    //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。</span><br><span class="line">    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];</span><br><span class="line">    content.title = [NSString localizedUserNotificationStringForKey:@&quot;本地推送Title&quot; arguments:nil];</span><br><span class="line">    content.body = [NSString localizedUserNotificationStringForKey:@&quot;本地推送Body&quot;     arguments:nil];</span><br><span class="line">    content.sound = [UNNotificationSound defaultSound];</span><br><span class="line">    </span><br><span class="line">    // 在 设定时间 后推送本地推送</span><br><span class="line">    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger</span><br><span class="line">                                                  triggerWithTimeInterval:5 repeats:NO];</span><br><span class="line">    </span><br><span class="line">    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@&quot;FiveSecond&quot;</span><br><span class="line">                                                                          content:content trigger:trigger];</span><br><span class="line">    </span><br><span class="line">    //添加推送成功后的处理！</span><br><span class="line">    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) &#123;</span><br><span class="line">       </span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+<h3 id="通知处理"><a href="#通知处理" class="headerlink" title="通知处理"></a><strong>通知处理</strong></h3><p>实现<code>UNUserNotificationCenterDelegate</code>代理方法:</p>
+<ul>
+<li>第一个代理方法：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler&#123;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    // 处理完成后条用 completionHandler ，用于指示在前台显示通知的形式</span><br><span class="line">    completionHandler(UNNotificationPresentationOptionSound);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法中的那句话就是，当应用在前台的时候，收到本地通知，是用什么方式来展现。系统给了三种形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_OPTIONS(NSUInteger, UNNotificationPresentationOptions) &#123;</span><br><span class="line">    UNNotificationPresentationOptionBadge   = (1 &lt;&lt; 0),</span><br><span class="line">    UNNotificationPresentationOptionSound   = (1 &lt;&lt; 1),</span><br><span class="line">    UNNotificationPresentationOptionAlert   = (1 &lt;&lt; 2),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第二个代理方法：</li>
+</ul>
+<p>这个方法是在后台或者程序被杀死的时候，点击通知栏调用的，在前台的时候不会被调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler&#123;</span><br><span class="line"></span><br><span class="line">    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@&quot;Title&quot; message:@&quot;message&quot; delegate:self cancelButtonTitle:@&quot;cancel&quot; otherButtonTitles:@&quot;ok&quot;, nil];</span><br><span class="line">    [alert show];</span><br><span class="line">    </span><br><span class="line">    completionHandler();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/14/localNotification/" data-id="cjg1ulpcv000oxixis11bnpjt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/本地推送/">本地推送</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/16/visitJinShanCityBeach/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          金山城市沙滩游
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/13/handleUITableView/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS UITableView的一些琐碎</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-实用/">iOS 实用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-推送/">iOS 推送</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-网络相关/">iOS 网络相关</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native学习笔记/">react-native学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift学习笔记/">swift学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/8081port/">8081port</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC内存泄漏/">ARC内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crash-Blog/">Crash Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optional/">Optional</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxSwift/">RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UItableView/">UItableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-listView/">android-listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/closure/">closure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/draw/">draw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flatMap/">flatMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/">hello world</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/index-ios-js/">index.ios.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpush/">jpush</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/listView/">listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moya-RxSwift/">moya + RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/onClick/">onClick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rn网络请求/">rn网络请求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地存储/">本地存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地推送/">本地推送</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书，思考/">读书，思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/8081port/" style="font-size: 10px;">8081port</a> <a href="/tags/ARC内存泄漏/" style="font-size: 10px;">ARC内存泄漏</a> <a href="/tags/Crash-Blog/" style="font-size: 10px;">Crash Blog</a> <a href="/tags/Optional/" style="font-size: 10px;">Optional</a> <a href="/tags/RxSwift/" style="font-size: 10px;">RxSwift</a> <a href="/tags/UItableView/" style="font-size: 10px;">UItableView</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/android-listView/" style="font-size: 10px;">android-listView</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/draw/" style="font-size: 10px;">draw</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/flatMap/" style="font-size: 10px;">flatMap</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/index-ios-js/" style="font-size: 10px;">index.ios.js</a> <a href="/tags/jpush/" style="font-size: 10px;">jpush</a> <a href="/tags/listView/" style="font-size: 10px;">listView</a> <a href="/tags/map/" style="font-size: 10px;">map</a> <a href="/tags/moya-RxSwift/" style="font-size: 10px;">moya + RxSwift</a> <a href="/tags/onClick/" style="font-size: 10px;">onClick</a> <a href="/tags/paint/" style="font-size: 10px;">paint</a> <a href="/tags/rn网络请求/" style="font-size: 10px;">rn网络请求</a> <a href="/tags/swift/" style="font-size: 10px;">swift</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/本地存储/" style="font-size: 10px;">本地存储</a> <a href="/tags/本地推送/" style="font-size: 10px;">本地推送</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/读书，思考/" style="font-size: 10px;">读书，思考</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

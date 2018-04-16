@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>极光推送开发环境可以收到,生产环境收不到推送 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="首先阐述一下我遇到的问题： 我们项目连通了极光推送，以前写过的项目也是这样，在开发环境下测试，好使了，但是打包ADHoc时候，就不好使了，">
+<meta name="keywords" content="jpush">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极光推送开发环境可以收到,生产环境收不到推送">
+<meta property="og:url" content="http://yoursite.com/2017/03/30/jpush/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先阐述一下我遇到的问题： 我们项目连通了极光推送，以前写过的项目也是这样，在开发环境下测试，好使了，但是打包ADHoc时候，就不好使了，">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3902605-0a2777d161ddf364.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3902605-11a65f1d008826fb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3902605-8d52a21aec08c89d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3902605-9f2192a8e364ecc9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3902605-313a8945d475fa99.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3902605-1f8d59529c776d8d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="极光推送开发环境可以收到,生产环境收不到推送">
+<meta name="twitter:description" content="首先阐述一下我遇到的问题： 我们项目连通了极光推送，以前写过的项目也是这样，在开发环境下测试，好使了，但是打包ADHoc时候，就不好使了，">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3902605-0a2777d161ddf364.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-jpush" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/30/jpush/" class="article-date">
+  <time datetime="2017-03-29T16:00:00.000Z" itemprop="datePublished">2017-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS-推送/">iOS 推送</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      极光推送开发环境可以收到,生产环境收不到推送
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先阐述一下我遇到的问题：</p>
+<p>我们项目连通了极光推送，以前写过的项目也是这样，在开发环境下测试，好使了，但是打包ADHoc时候，就不好使了，<a id="more"></a>当时也没在意，因为网上好多人说，只要测试好使了，证书显示配置成功了（绿灯），那就没问题了。</p>
+<p>　　so，上线，然后上线以后，发现推送功能完全不好使！这就尴尬了，赶紧下架。</p>
+<p>　　因为我们项目使用的是别名推送，使用极光网站推送时候，我使用了广播，别名推送，regID推送，结果 都能收到（开发环境）；然后我在生产环境－－－－－＞再次发送－－－－－＞广播，别名，regID，结果，很显然，别名收不到，这就纠结了，开始查看问题吧。</p>
+<p>　　经过两天的爬坑，终于找到了问题所在，也正在积极解决。在这里再次感谢极光官方两位大牛，如果没有你们的帮忙，我想我还会纠结好久。    <a href="https://community.jiguang.cn/users/Lris/activity" target="_blank" rel="noopener">Lris12</a>            <a href="https://community.jiguang.cn/users/helperhaps/activity" target="_blank" rel="noopener">Helperhaps</a> </p>
+<p>　　好了，废话少说，阐述问题跟代码</p>
+<hr>
+<p>　　初次发现这个问题的时候，首先排查的就是证书配置，这里再次建议大家好好仔细的看看开发文档，因为很多错误都是细节处不注意造成的，<a href="https://docs.jiguang.cn/jpush/client/iOS/ios_sdk/" target="_blank" rel="noopener">附上开发文档地址</a>。因为这个项目是接手别人已经做得差不多的，我就负责收尾，所以，证书这方面我会优先查看，是否错误。</p>
+<p>　　在developer.apple.com 中，我已经看到</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3902605-0a2777d161ddf364.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="developer.apple.com"></p>
+<p>　　很明显，开发环境的证书跟生产环境的证书，都已经配置完成，那么证书是没有问题的，下面我们看看极光官网的配置：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3902605-11a65f1d008826fb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="极光官网的配置"></p>
+<p>　　也是已验证，这就奇怪了，到这，我表示，可能是代码出错了，好吧，我们来看代码。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3902605-8d52a21aec08c89d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="代码"></p>
+<p>　　别名设置，相信在官方文档中大家都明白怎么写。反复查看文档，我发现并没有任何问题这么写。经过跟  Lris12 大神的交流，觉得很可能是因为网络原因，在注册极光还没有返回成功的时候，就绑定别名，导致regID跟别名没有绑定成功。</p>
+<p>　　解决方法：</p>
+<p>　　添加5个监听，在监听到extern NSString * const kJPFNetworkDidLoginNotification; // 登录成功，之后再设置别名。</p>
+<p>　　<a href="https://docs.jiguang.cn/jpush/client/iOS/ios_guide_new/#jpush-sdk1" target="_blank" rel="noopener">极光集成指南</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3902605-9f2192a8e364ecc9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="代码"></p>
+<p><strong>Ps：这里强烈建议这么写，安全第一 安全第一！！！</strong></p>
+<p>　　这里附上代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];</span><br><span class="line"></span><br><span class="line">[defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidLoginNotification object:nil];</span><br><span class="line"></span><br><span class="line">[JPUSHService registerDeviceToken:deviceToken];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>//通知方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)networkDidReceiveMessage:(NSNotification *)notification &#123;</span><br><span class="line"></span><br><span class="line">[JPUSHService setTags:nil aliasInbackground:[OpenUDID value]];</span><br><span class="line"></span><br><span class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line"></span><br><span class="line">[JPUSHService setTags:nil alias:[OpenUDID value] fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>//销毁通知：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[NSNotificationCenter defaultCenter] removeObserver:self name:kJPFNetworkDidLoginNotification object:nil];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　然而，问题依旧没有解决，但是这个时候，我们登录极光官网推送。我在生产环境，再次发送，广播，别名，regID，结果，都收到了！！正当我高兴的时候，发现 api推送依旧收不到！！收不到！！绝望！！</p>
+<p>　　继续排查！！！按照开发文档，设置xcode配置，嗯 ，依旧没用。</p>
+<p>　　这里我重点说一下 ：iOS9 之后 卸载重装后会改变token，所以registrationID会改变，如果你没有用到idfa。如果你的项目使用的是regID推送，那么你要注意，每次更新app，新用户下载app，重新下载app等一系列状况下，regID改变的问题。还有如果注册成功后，会返回，设置成功，有callback为0。这个也要注意下。</p>
+<p>　　好，回归正题。这时候时间已经过去一天半了， 最后我觉得，我所有的代码，配置，证书，环境，都没有问题！再去极光官网看看，到底咋回事。</p>
+<p>　　好吗 这一看 终于发现了问题所在！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3902605-313a8945d475fa99.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="极光官网"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3902605-1f8d59529c776d8d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="极光官网"></p>
+<p>　　大家看没看到，这里写的是推送平台iOS-dev？卧槽！！后台给我推送的居然是开发环境！！果断找后台理论！！！</p>
+<p>　　Lris大神告诉我：「发布版本后无法有效推送」 or 「生产环境下收不到消息」 按以下步骤排查问题： 客户端－－－－＞客户端是否打包证书－－－－＞检查当前环境是否正确－－－－－＞设备里面的手机应用有没有添加/配置这个tag/ 别名－－－＞服务端注意改变环境参数，option的apns_production的值（true：生产）（false开发）。根据客户端环境改变服务端推送环境。环境要一致才能收到推送。</p>
+<p>　　然后我们后台给我发送了一段代码 堵住了我的嘴：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$platform = &apos;android,ios&apos; ;</span><br><span class="line"></span><br><span class="line">$msg_content = json_encode(array(&apos;n_builder_id&apos;=&gt;0, &apos;n_title&apos;=&gt;$n_title, &apos;n_content&apos;=&gt;$n_content,&apos;content-available&apos;=&gt;1,&apos;apns_production&apos;=&gt;1));</span><br><span class="line"></span><br><span class="line">$obj = new jpush($masterSecret,$appkeys);</span><br></pre></td></tr></table></figure>
+<p>　　我标红的位置，人家已经设置了1，为什么还不好用？经过Helperhaps大神的解释，好吧，我懂了！我们后台使用的过期的V2 api。</p>
+<p>　　特别提示：建议不要在客户端里写代码直接调用此 API。因为 Android apk 比较容易破解，别人很容易从客户端代码里找出来调用 JPush Remote API 所需要的保密信息，从而可以模拟到你的身份来发起恶意的推送。</p>
+<p>　　建议的使用方式是：调用 JPush Remote API 的代码放在你自己的应用服务器上。你自己的应用服务器对自己的客户端提供接口来推送消息。具体请参考推聊的作法：示例与代码。</p>
+<p>　　升级到 v3 Push API：建议开发者升级到 v3 版本。此版本会继续支持到 2015 年。至此，这个问题才算是解决（至少对前端来说）。第一次发这样的帖子感觉有点乱 嗯。。。</p>
+<p>　　下次大家在推送上有问题的话。。先看开发文档走一遍流程，然后看看极光个人推送，广播能否收到，然后就可以考虑跟服务端干一仗了！！</p>
+<p>　　最后祝大家 永无BUG！！！！！！！！！！！！！</p>
+<p>　　转自：<a href="http://www.jianshu.com/p/0d382c4d98ff" target="_blank" rel="noopener">http://www.jianshu.com/p/0d382c4d98ff</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/30/jpush/" data-id="cjg1ulpd2000vxixizo8khoag" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jpush/">jpush</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/31/rainNight/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          雨夜
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/22/rnPortCrash/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React-Native 奇葩报错</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-实用/">iOS 实用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-推送/">iOS 推送</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-网络相关/">iOS 网络相关</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native学习笔记/">react-native学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift学习笔记/">swift学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/8081port/">8081port</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC内存泄漏/">ARC内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crash-Blog/">Crash Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optional/">Optional</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxSwift/">RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UItableView/">UItableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-listView/">android-listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/closure/">closure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/draw/">draw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flatMap/">flatMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/">hello world</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/index-ios-js/">index.ios.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpush/">jpush</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/listView/">listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moya-RxSwift/">moya + RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/onClick/">onClick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rn网络请求/">rn网络请求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地存储/">本地存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地推送/">本地推送</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书，思考/">读书，思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/8081port/" style="font-size: 10px;">8081port</a> <a href="/tags/ARC内存泄漏/" style="font-size: 10px;">ARC内存泄漏</a> <a href="/tags/Crash-Blog/" style="font-size: 10px;">Crash Blog</a> <a href="/tags/Optional/" style="font-size: 10px;">Optional</a> <a href="/tags/RxSwift/" style="font-size: 10px;">RxSwift</a> <a href="/tags/UItableView/" style="font-size: 10px;">UItableView</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/android-listView/" style="font-size: 10px;">android-listView</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/draw/" style="font-size: 10px;">draw</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/flatMap/" style="font-size: 10px;">flatMap</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/index-ios-js/" style="font-size: 10px;">index.ios.js</a> <a href="/tags/jpush/" style="font-size: 10px;">jpush</a> <a href="/tags/listView/" style="font-size: 10px;">listView</a> <a href="/tags/map/" style="font-size: 10px;">map</a> <a href="/tags/moya-RxSwift/" style="font-size: 10px;">moya + RxSwift</a> <a href="/tags/onClick/" style="font-size: 10px;">onClick</a> <a href="/tags/paint/" style="font-size: 10px;">paint</a> <a href="/tags/rn网络请求/" style="font-size: 10px;">rn网络请求</a> <a href="/tags/swift/" style="font-size: 10px;">swift</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/本地存储/" style="font-size: 10px;">本地存储</a> <a href="/tags/本地推送/" style="font-size: 10px;">本地推送</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/读书，思考/" style="font-size: 10px;">读书，思考</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

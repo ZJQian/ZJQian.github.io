@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>moya + RxSwift 进行网络请求 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如在OC中使用AFNetworking一般,Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层:">
+<meta name="keywords" content="moya + RxSwift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="moya + RxSwift 进行网络请求">
+<meta property="og:url" content="http://yoursite.com/2017/03/13/moya/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如在OC中使用AFNetworking一般,Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层:">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.blog.csdn.net/20170313171002333?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="moya + RxSwift 进行网络请求">
+<meta name="twitter:description" content="如在OC中使用AFNetworking一般,Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层:">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170313171002333?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-moya" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/13/moya/" class="article-date">
+  <time datetime="2017-03-13T09:59:00.000Z" itemprop="datePublished">2017-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/swift学习笔记/">swift学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      moya + RxSwift 进行网络请求
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如在OC中使用AFNetworking一般,Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层:<br><a id="more"></a></p>
+<h2 id="1-关于moya"><a href="#1-关于moya" class="headerlink" title="1.关于moya"></a><strong>1.关于moya</strong></h2><p><img src="http://img.blog.csdn.net/20170313171002333?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="moya"></p>
+<p>官方说<code>moya</code>有以下特性-_-:</p>
+<ul>
+<li>编译时检查正确的API端点访问.</li>
+<li>使你定义不同端点枚举值对应相应的用途更加明晰.</li>
+<li>提高测试地位从而使单元测试更加容易.</li>
+</ul>
+<h2 id="2-开始"><a href="#2-开始" class="headerlink" title="2.开始"></a><strong>2.开始</strong></h2><h3 id="1-创建枚举API"><a href="#1-创建枚举API" class="headerlink" title="1.创建枚举API"></a><strong>1.创建枚举API</strong></h3><p>就像这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">enum APIManager &#123;</span><br><span class="line">case getNewsLatest//获取最新消息</span><br><span class="line">case getStartImage// 启动界面图像获取</span><br><span class="line">case getVersion(String)//软件版本查询</span><br><span class="line">case getThemes//主题日报列表查看</span><br><span class="line">case getNewsDetail(Int)//获取新闻详情</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-实现TargetType协议"><a href="#2-实现TargetType协议" class="headerlink" title="2.实现TargetType协议"></a><strong>2.实现<code>TargetType</code>协议</strong></h3><p>就像这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">extension APIManager: TargetType &#123;</span><br><span class="line"></span><br><span class="line">/// The target&apos;s base `URL`.</span><br><span class="line">var baseURL: URL &#123;</span><br><span class="line"></span><br><span class="line">return URL.init(string: &quot;http://news-at.zhihu.com/api/&quot;)!</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// The path to be appended to `baseURL` to form the full `URL`.</span><br><span class="line">var path: String &#123;</span><br><span class="line"></span><br><span class="line">switch self &#123;</span><br><span class="line"></span><br><span class="line">case .getNewsLatest:</span><br><span class="line">return &quot;4/news/latest&quot;</span><br><span class="line"></span><br><span class="line">case .getStartImage://start-image 后为图像分辨率，接受任意的 number*number 格式， number 为任意非负整数，返回值均相同。</span><br><span class="line">return &quot;4/start-image/1080*1776&quot;</span><br><span class="line"></span><br><span class="line">case .getVersion(let version)://URL 最后部分的数字代表所安装『知乎日报』的版本</span><br><span class="line">return &quot;4/version/ios/&quot; + version</span><br><span class="line"></span><br><span class="line">case .getThemes:</span><br><span class="line">return &quot;4/themes&quot;</span><br><span class="line"></span><br><span class="line">case .getNewsDetail(let id):</span><br><span class="line">return &quot;4/news/\(id)&quot;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// The HTTP method used in the request.</span><br><span class="line">var method: Moya.Method &#123;</span><br><span class="line"></span><br><span class="line">return .get</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// The parameters to be incoded in the request.</span><br><span class="line">var parameters: [String: Any]? &#123;</span><br><span class="line"></span><br><span class="line">return nil</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// The method used for parameter encoding.</span><br><span class="line">var parameterEncoding: ParameterEncoding &#123;</span><br><span class="line"></span><br><span class="line">return URLEncoding.default</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// Provides stub data for use in testing.</span><br><span class="line">var sampleData: Data &#123;</span><br><span class="line"></span><br><span class="line">return &quot;&quot;.data(using: String.Encoding.utf8)!</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// The type of HTTP task to be performed.</span><br><span class="line">var task: Task &#123;</span><br><span class="line"></span><br><span class="line">return .request</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// Whether or not to perform Alamofire validation. Defaults to `false`.</span><br><span class="line">var validate: Bool &#123;</span><br><span class="line"></span><br><span class="line">return false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这里,可以设置请求的参数,例如url……method……para等.</p>
+<h3 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a><strong>3.使用</strong></h3><p><code>Moya</code>的使用非常简单，通过<code>TargetType</code>协议定义好每个<code>target</code>之后，就可以直接使用<code>Moya</code>开始发送网络请求了。就像这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let provider = MoyaProvider&lt;APIManager&gt;()</span><br><span class="line">provider.request(.getNewsLatest) &#123; result in</span><br><span class="line">// do something with result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-配合RxSwift"><a href="#3-配合RxSwift" class="headerlink" title="3.配合RxSwift"></a><strong>3.配合RxSwift</strong></h2><p><code>Moya</code>本身已经是一个使用起来非常方便，能够写出非常简洁优雅的代码的网络封装库，但是让<code>Moya</code>变得更加强大的原因之一还因为它对于<code>Functional Reactive Programming</code>的扩展，具体说就是对于<code>RxSwift</code>和<code>ReactiveCocoa</code>的扩展，通过与这两个库的结合，能让<code>Moya</code>变得更加强大。我选择<code>RxSwift</code>的原因有两个，一个是<code>RxSwift</code>的库相对来说比较轻量级，语法更新相对来说比较少，我之前用过<code>ReactiveCocoa</code>，一些大版本的更新需求重写很多代码，第二个更重要的原因是因为<code>RxSwift</code>背后有整个<code>ReactiveX</code>的支持，里面包括<code>Java</code>，<code>JS</code>，<code>.Net</code>, <code>Swift</code>，<code>Scala</code>，它们内部都用了<code>ReactiveX</code>的逻辑思想，这意味着你一旦学会了其中的一个，以后可以很快的上手<code>ReactiveX</code>中的其他语言。</p>
+<p><code>Moya</code>提供了非常方面的<code>RxSwift</code>扩展：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let provider = RxMoyaProvider&lt;APIManager&gt;()</span><br><span class="line">provider.request(.getNewsLatest)</span><br><span class="line">.filterSuccessfulStatusCodes()</span><br><span class="line">.mapJSON()</span><br><span class="line">.subscribe(onNext: &#123; (json) in</span><br><span class="line">//do something with posts</span><br><span class="line">print(json)</span><br><span class="line">&#125;)</span><br><span class="line">.addDisposableTo(disposeBag)</span><br></pre></td></tr></table></figure>
+<p><strong>解释一下:</strong></p>
+<ul>
+<li><p><code>RxMoyaProvider</code>是<code>MoyaProvider</code>的子类，是对<code>RxSwift</code>的扩展</p>
+</li>
+<li><p><code>filterSuccessfulStatusCodes()</code>是<code>Moya</code>为<code>RxSwift</code>提供的扩展方法，顾名思义，可以得到成功地网络请求，忽略其他的</p>
+</li>
+<li><p><code>mapJSON()</code>也是<code>Moya RxSwift</code>的扩展方法，可以把返回的数据解析成 <code>JSON</code> 格式</p>
+</li>
+<li><p><code>subscribe</code> 是一个<code>RxSwift</code>的方法，对经过一层一层处理的 <code>Observable</code> 订阅一个 <code>onNext</code> 的 <code>observer</code>，一旦得到 <code>JSON</code> 格式的数据，就会经行相应的处理</p>
+</li>
+<li><p><code>addDisposableTo(disposeBag)</code> 是 <code>RxSwift</code> 的一个自动内存处理机制，跟<code>ARC</code>有点类似，会自动清理不需要的对象。</p>
+</li>
+</ul>
+<h2 id="4-配合HandyJSON"><a href="#4-配合HandyJSON" class="headerlink" title="4.配合HandyJSON"></a><strong>4.配合HandyJSON</strong></h2><p>在实际应用过程中网络请求往往紧密连接着数据层（<code>Model</code>），具体地说，在我们的这个例子中，一般我们需要建立一个类用来统一管理数据，然后把得到的 <code>JSON</code> 数据映射到数据层（<code>Model</code>）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">struct MenuModel: HandyJSON &#123;</span><br><span class="line">var others: [ThemeModel]?</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct ThemeModel: HandyJSON &#123;</span><br><span class="line"></span><br><span class="line">var color: String?</span><br><span class="line">var thumbnail: String?</span><br><span class="line">var id: Int?</span><br><span class="line">var description: String?</span><br><span class="line">var name: String?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后创建ViewModel类,创建具体请求方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class MenuViewModel &#123;</span><br><span class="line"></span><br><span class="line">private let provider = RxMoyaProvider&lt;APIManager&gt;()</span><br><span class="line">var dispose = DisposeBag()</span><br><span class="line"></span><br><span class="line">func getThemes(completed: @escaping (_ menuModel: MenuModel) -&gt; ())&#123;</span><br><span class="line"></span><br><span class="line">provider</span><br><span class="line">.request(.getThemes)</span><br><span class="line">.mapModel(MenuModel.self)</span><br><span class="line">.subscribe(onNext: &#123; (model) in</span><br><span class="line"></span><br><span class="line">completed(model)</span><br><span class="line">&#125;, onError: &#123; (error) in</span><br><span class="line"></span><br><span class="line">&#125;, onCompleted: nil, onDisposed: nil).addDisposableTo(dispose)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>这里解释一下:</strong><br>我这里是将请求的数据通过闭包传了出去,当然也可以不那么做.个人喜好问题..</p>
+<p>这里是为 <code>RxSwift</code> 中的 <code>ObservableType</code>和 <code>Response</code>写一个简单的扩展方法 <code>mapModel</code>，利用我们写好的<code>Model</code> 类，一步就把<code>JSON</code>数据映射成 <code>model</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">extension ObservableType where E == Response &#123;</span><br><span class="line">public func mapModel&lt;T: HandyJSON&gt;(_ type: T.Type) -&gt; Observable&lt;T&gt; &#123;</span><br><span class="line">return flatMap &#123; response -&gt; Observable&lt;T&gt; in</span><br><span class="line">return Observable.just(response.mapModel(T.self))</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension Response &#123;</span><br><span class="line">func mapModel&lt;T: HandyJSON&gt;(_ type: T.Type) -&gt; T &#123;</span><br><span class="line">let jsonString = String.init(data: data, encoding: .utf8)</span><br><span class="line">return JSONDeserializer&lt;T&gt;.deserializeFrom(json: jsonString)!</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-配合ObjectMapper"><a href="#5-配合ObjectMapper" class="headerlink" title="5.配合ObjectMapper"></a><strong>5.配合ObjectMapper</strong></h2><p>毕竟将json数据转换成model的库那么多 ….,所以……,用哪个很随意…..这里再介绍一下<code>ObjectMapper</code></p>
+<p><strong>1.创建model类</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class DetailModel: Mappable &#123;</span><br><span class="line"></span><br><span class="line">var body = String()</span><br><span class="line">var image_source: String?</span><br><span class="line">var title = String()</span><br><span class="line">var image: String?</span><br><span class="line">var share_url = String()</span><br><span class="line">var js = String()</span><br><span class="line">var recommenders = [[String: String]]()</span><br><span class="line">var ga_prefix = String()</span><br><span class="line">var section: DetailSectionModel?</span><br><span class="line">var type = Int()</span><br><span class="line">var id = Int()</span><br><span class="line">var css = [String]()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func mapping(map: Map) &#123;</span><br><span class="line"></span><br><span class="line">body &lt;- map[&quot;body&quot;]</span><br><span class="line">image_source &lt;- map[&quot;image_source&quot;]</span><br><span class="line">title &lt;- map[&quot;title&quot;]</span><br><span class="line">image &lt;- map[&quot;image&quot;]</span><br><span class="line">share_url &lt;- map[&quot;share_url&quot;]</span><br><span class="line">js &lt;- map[&quot;js&quot;]</span><br><span class="line">recommenders &lt;- map[&quot;recommenders&quot;]</span><br><span class="line">ga_prefix &lt;- map[&quot;ga_prefix&quot;]</span><br><span class="line">section &lt;- map[&quot;section&quot;]</span><br><span class="line">type &lt;- map[&quot;type&quot;]</span><br><span class="line">id &lt;- map[&quot;id&quot;]</span><br><span class="line">css &lt;- map[&quot;css&quot;]</span><br><span class="line">&#125;</span><br><span class="line">required init?(map: Map) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>ObjectMapper</code> ，需要让自己的 <code>Model</code> 类使用 <code>Mappable</code> 协议，这个协议包括两个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">required init?(map: Map) &#123;&#125;</span><br><span class="line"></span><br><span class="line">func mapping(map: Map) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>mapping</code> 方法中，用 <code>&lt;-</code> 操作符来处理和映射你的 <code>JSON</code>数据。</p>
+<p>数据类建立好之后，我们还需要为 <code>RxSwift</code> 中的 <code>Observable</code> 写一个简单的扩展方法 <code>mapObject</code>，利用我们写好的<code>model</code> 类，一步就把<code>JSON</code> 数据映射成一个个 <code>model</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">extension Observable &#123;</span><br><span class="line">func mapObject&lt;T: Mappable&gt;(type: T.Type) -&gt; Observable&lt;T&gt; &#123;</span><br><span class="line">return self.map &#123; response in</span><br><span class="line">//if response is a dictionary, then use ObjectMapper to map the dictionary</span><br><span class="line">//if not throw an error</span><br><span class="line">guard let dict = response as? [String: Any] else &#123;</span><br><span class="line">throw RxSwiftMoyaError.ParseJSONError</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return Mapper&lt;T&gt;().map(JSON: dict)!</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func mapArray&lt;T: Mappable&gt;(type: T.Type) -&gt; Observable&lt;[T]&gt; &#123;</span><br><span class="line">return self.map &#123; response in</span><br><span class="line">//if response is an array of dictionaries, then use ObjectMapper to map the dictionary</span><br><span class="line">//if not, throw an error</span><br><span class="line">guard let array = response as? [Any] else &#123;</span><br><span class="line">throw RxSwiftMoyaError.ParseJSONError</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">guard let dicts = array as? [[String: Any]] else &#123;</span><br><span class="line">throw RxSwiftMoyaError.ParseJSONError</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return Mapper&lt;T&gt;().mapArray(JSONArray: dicts)!</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enum RxSwiftMoyaError: String &#123;</span><br><span class="line">case ParseJSONError</span><br><span class="line">case OtherError</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension RxSwiftMoyaError: Swift.Error &#123; &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>mapObject</code> 方法处理单个对象，<code>mapArray</code> 方法处理对象数组。</p>
+</li>
+<li><p>如果传进来的数据 <code>response</code> 是一个 <code>dictionary</code>，那么就利用 <code>ObjectMapper</code> 的 <code>map</code>方法映射这些数据，这个方法会调用你之前在 <code>mapping</code>方法里面定义的逻辑。</p>
+</li>
+<li><p>如果 <code>response</code> 不是一个 <code>dictionary</code>， 那么就抛出一个错误。</p>
+</li>
+<li><p>在底部自定义了简单的<code>Error</code>，继承了<code>Swift</code> 的 <code>Error</code>类，在实际应用过程中可以根据需要提供自己想要的 <code>Error</code>。</p>
+</li>
+</ul>
+<p>然后运行请求方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class DetailViewModel &#123;</span><br><span class="line"></span><br><span class="line">private let provider = RxMoyaProvider&lt;APIManager&gt;()</span><br><span class="line"></span><br><span class="line">func getNewsDetail(id: Int) -&gt; Observable&lt;DetailModel&gt; &#123;</span><br><span class="line"></span><br><span class="line">return provider</span><br><span class="line">.request(.getNewsDetail(id))</span><br><span class="line">.filterSuccessfulStatusCodes()</span><br><span class="line">.mapJSON()</span><br><span class="line">.mapObject(type: DetailModel.self)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有没有感觉很爽呢!————<a href="https://github.com/ZJQian/ZhiHuNewsSwift" target="_blank" rel="noopener">源码地址,共同学习!</a></p>
+<p><strong>有不对之处,,,,还望各路大神不吝指正!</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/13/moya/" data-id="cjg1ulpcz000sxixi4h98887s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/moya-RxSwift/">moya + RxSwift</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/22/react-native-listView/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React-Native 之ListView
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/13/RxSwift/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">RxSwift的简单使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-实用/">iOS 实用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-推送/">iOS 推送</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-网络相关/">iOS 网络相关</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native学习笔记/">react-native学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift学习笔记/">swift学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/8081port/">8081port</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC内存泄漏/">ARC内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crash-Blog/">Crash Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optional/">Optional</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxSwift/">RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UItableView/">UItableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-listView/">android-listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/closure/">closure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/draw/">draw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flatMap/">flatMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/">hello world</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/index-ios-js/">index.ios.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpush/">jpush</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/listView/">listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moya-RxSwift/">moya + RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/onClick/">onClick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rn网络请求/">rn网络请求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地存储/">本地存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地推送/">本地推送</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书，思考/">读书，思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/8081port/" style="font-size: 10px;">8081port</a> <a href="/tags/ARC内存泄漏/" style="font-size: 10px;">ARC内存泄漏</a> <a href="/tags/Crash-Blog/" style="font-size: 10px;">Crash Blog</a> <a href="/tags/Optional/" style="font-size: 10px;">Optional</a> <a href="/tags/RxSwift/" style="font-size: 10px;">RxSwift</a> <a href="/tags/UItableView/" style="font-size: 10px;">UItableView</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/android-listView/" style="font-size: 10px;">android-listView</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/draw/" style="font-size: 10px;">draw</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/flatMap/" style="font-size: 10px;">flatMap</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/index-ios-js/" style="font-size: 10px;">index.ios.js</a> <a href="/tags/jpush/" style="font-size: 10px;">jpush</a> <a href="/tags/listView/" style="font-size: 10px;">listView</a> <a href="/tags/map/" style="font-size: 10px;">map</a> <a href="/tags/moya-RxSwift/" style="font-size: 10px;">moya + RxSwift</a> <a href="/tags/onClick/" style="font-size: 10px;">onClick</a> <a href="/tags/paint/" style="font-size: 10px;">paint</a> <a href="/tags/rn网络请求/" style="font-size: 10px;">rn网络请求</a> <a href="/tags/swift/" style="font-size: 10px;">swift</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/本地存储/" style="font-size: 10px;">本地存储</a> <a href="/tags/本地推送/" style="font-size: 10px;">本地推送</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/读书，思考/" style="font-size: 10px;">读书，思考</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

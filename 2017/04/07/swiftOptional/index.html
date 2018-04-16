@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>swiftOptional | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习swift的过程中不可避免的会遇到？或！这种东西，这就是今天要说的可选型（Optional)了。大家都知道，swift是苹果官方推出的一款较于Objective-C安全性较高的语言，而可选型就是swift最为突出的特性之一。 Optional是什么？Optional 是 Swift 新加入的类型。可选型的意思简单理解是：有值得时候就有值，无值的时候就是 nil 。Swift 中的 nil 和其">
+<meta name="keywords" content="swift,Optional">
+<meta property="og:type" content="article">
+<meta property="og:title" content="swiftOptional">
+<meta property="og:url" content="http://yoursite.com/2017/04/07/swiftOptional/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="学习swift的过程中不可避免的会遇到？或！这种东西，这就是今天要说的可选型（Optional)了。大家都知道，swift是苹果官方推出的一款较于Objective-C安全性较高的语言，而可选型就是swift最为突出的特性之一。 Optional是什么？Optional 是 Swift 新加入的类型。可选型的意思简单理解是：有值得时候就有值，无值的时候就是 nil 。Swift 中的 nil 和其">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="swiftOptional">
+<meta name="twitter:description" content="学习swift的过程中不可避免的会遇到？或！这种东西，这就是今天要说的可选型（Optional)了。大家都知道，swift是苹果官方推出的一款较于Objective-C安全性较高的语言，而可选型就是swift最为突出的特性之一。 Optional是什么？Optional 是 Swift 新加入的类型。可选型的意思简单理解是：有值得时候就有值，无值的时候就是 nil 。Swift 中的 nil 和其">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-swiftOptional" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/07/swiftOptional/" class="article-date">
+  <time datetime="2017-04-07T01:13:35.000Z" itemprop="datePublished">2017-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/swift学习笔记/">swift学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      swiftOptional
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习<code>swift</code>的过程中不可避免的会遇到<code>？</code>或<code>！</code>这种东西，这就是今天要说的可选型（<code>Optional</code>)了。大家都知道，<code>swift</code>是苹果官方推出的一款较于<code>Objective-C</code>安全性较高的语言，而可选型就是<code>swift</code>最为突出的特性之一。</p>
+<h1 id="Optional是什么？"><a href="#Optional是什么？" class="headerlink" title="Optional是什么？"></a><strong>Optional是什么？</strong></h1><p><code>Optional</code> 是 <code>Swift</code> 新加入的类型。可选型的意思简单理解是：有值得时候就有值，无值的时候就是 <code>nil</code> 。<code>Swift</code> 中的 <code>nil</code> 和其他语言中的 <code>nil</code> 还有些不一样，<code>nil</code> 自己本身就是一种类型，没有就是 <code>nil</code> ，是和其他类型严格区分开的。<br>可选型的定义很简单：类型 + ? 。比如  <code>String?</code>、<code>Int?</code>、<code>Float?</code> 等，这里需要注意的是 <code>String?</code> 和 <code>String</code> 是完全不同的两个类型，前者是 <code>String</code> 类型的可选型，后者是 <code>String</code> 类型，注意区分。举个例子，在 OC 中我们可以这样写:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSString *name = @&quot;jack&quot;;</span><br><span class="line">name = nil;</span><br></pre></td></tr></table></figure>
+<p>而在swift中如果像下面这种写法是会报错的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//这种写法是会报错的，说的是 nil 是不可以分配给 String 类型的，这也说明在 swift 中 nil 是和其他类型严格区分的。</span><br><span class="line">var name: String = &quot;jack&quot;</span><br><span class="line">name = nil</span><br></pre></td></tr></table></figure>
+<p>改为可选型之后就可以了，像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = &quot;name&quot;</span><br><span class="line">name = nil</span><br></pre></td></tr></table></figure>
+<p>可选型，顾名思义就是可以选择，比如 <code>String?</code> 的意思就是可以在 <code>String</code> 和 <code>nil</code> 之间选择，可以是 <code>String</code> 也可以是 <code>nil</code> 。如果一个变量定义成 <code>String</code>，那么这个变量就会是 <code>String</code> 类型，而不可能是<code>nil</code>。</p>
+<p>还有一点需要注意的是声明可选型必须是显示的声明也就是必须是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = nil</span><br></pre></td></tr></table></figure>
+<p>而不能是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name = nil</span><br></pre></td></tr></table></figure>
+<p>这样，因为 Swift 在做类型判断的时候无法判断 name 到底是 String 类型的可选型还是其他类型的可选型，因此会导致编译错误。</p>
+<blockquote>
+<p>Tips: 当然枚举类型的写法还可以如</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; var name: Optional&lt;String&gt; = Optional.Some(&quot;Loveway&quot;)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>这样，只不过我们一般都用</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; var name: String? = nil</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>这样的简写。</p>
+</blockquote>
+<h1 id="Optional的解包"><a href="#Optional的解包" class="headerlink" title="Optional的解包"></a><strong>Optional的解包</strong></h1><p>可选型是不能够被直接使用的（因为 Swift 是类型安全的，可选型的值又可能会是 nil，如果不做处理可能导致程序 crash），如果我们想使用可选型的值，那么在这之前我们需要做的一项工作就是：解包（unwarp）！</p>
+<ul>
+<li><strong>1.强制解包</strong></li>
+</ul>
+<p>所谓的强制解包意思就是我知道这个类型是可选型，但是在我的程序执行到这里的时候我可以保证它是有值得，所以我要在这里使用它。具体表现形式就是在可选型后面加个 <code>!</code>，如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = &quot;jack&quot;</span><br><span class="line">print(&quot;My name is &quot; + name!)</span><br></pre></td></tr></table></figure>
+<p>但是这样的解包是不安全，因为你不知道什么时候你的这个可选型就会变成 nil，如果我们代码非常多的话，一不小心为 nil了，可能会导致程序崩溃。这个时候我们会想到一种方法：判空！如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = &quot;loveway&quot;</span><br><span class="line">if name != nil &#123; </span><br><span class="line">  print(&quot;My name is &quot; + name!)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  print(&quot;name is nil&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写似乎是没有什么问题了，但是需要注意的是，你在判断非 nil 的作用域内使用 name 的时候还必须把 ! 带上，这样代码比较多的时候还是比较麻烦。于是我们可以使用下面这种方式:</p>
+<ul>
+<li><strong>2.使用 <code>if let</code> 解包</strong></li>
+</ul>
+<p>如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = &quot;jack&quot;</span><br><span class="line">if let name = name &#123;</span><br><span class="line"> print(&quot;My name is &quot; + name)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  print(&quot;name is nil&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种解包方式可以保证 name 是解包过的，不会再是 nil 这种情况，其实逻辑是和上面做非空判断一样的。当然你把  <code>let</code> 换成 <code>var</code> 也是可以的，效果是一样的，只不过我们一般要用的是解包后的值，而不会去改变它，所以平常使用中一般都是用  <code>if let</code> 。</p>
+<p>同时  <code>if let</code> 可以同时一次性解包多个可选型，用  <code>,</code> 隔开，使语句简洁，如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = &quot;loveway&quot;</span><br><span class="line">var age: Int? = 18</span><br><span class="line">if let name = name, age = age &#123;</span><br><span class="line"> print(&quot;My name is &quot; + name + &quot;My age is&quot; + &quot;\(age)&quot;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  print(&quot;name is nil&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，既然这里使用的是 if ，那么同样我们可以如下这样用，来进行进一步的判断筛选:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = &quot;loveway&quot;</span><br><span class="line">var age: Int? = 18</span><br><span class="line">if let name = name, age = age where age == 18 &#123;</span><br><span class="line">  print(&quot;My name is \(name), age is \(String(age))&quot;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  print(&quot;name is nil&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="可选链式调用（Optional-Chaining）"><a href="#可选链式调用（Optional-Chaining）" class="headerlink" title="可选链式调用（Optional Chaining）"></a><strong>可选链式调用（Optional Chaining）</strong></h1><p>可选链式调用（Optional Chaining）是一种可以在当前值可能为 nil 的可选值上请求和调用属性、方法及下标的方法。如果可选值有值，那么调用就会成功，如果可选值是 nil ，那么调用将返回 nil。多个调用可以连接在一起形成一个调用链，如果其中任何一个节点为 nil ，整个调用链都会失败，即返回 nil 。</p>
+<p>下面我们就来举个例子具体说明可选链，如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = &quot;loveway&quot;</span><br><span class="line">if let name = name &#123;</span><br><span class="line">    print(name.uppercaseString)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    print(&quot;name is nil&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们来解包 name ，如果有值就打印出 name 的大写，如果没有就输出 name is nil ，其实上面这段代码完全等同于:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = &quot;loveway&quot;</span><br><span class="line">name?.uppercaseString</span><br></pre></td></tr></table></figure>
+<p>上面这句代码的意思就是如果可选型变量 name 有值，那么就对 name 进行解包，并得到 name 的uppercaseString 值，如果没有，那么这句代码就会返回一个 nil 。这样就符合 Swift 的类型安全，完全是没有问题的。但是如果你写成:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var name: String? = &quot;loveway&quot;</span><br><span class="line">name!.uppercaseString</span><br></pre></td></tr></table></figure>
+<p>也是可以的，不过不安全，因为如果 name 没有值，你进行强制解包，就会报错。</p>
+<p>所以我们以后可能会用到类似于 person?.name?.uppercaseString 这样的一层层解包的，这种就是可选链。</p>
+<h1 id="Nil-Coalescing-Operator（空合运算符）"><a href="#Nil-Coalescing-Operator（空合运算符）" class="headerlink" title="Nil Coalescing Operator（空合运算符）"></a><strong>Nil Coalescing Operator（空合运算符）</strong></h1><p>如上，如果我们想把解包后的值存起来的话，可以这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let newName = name == nil ? &quot;no name&quot; : name!</span><br></pre></td></tr></table></figure>
+<p>上面代码的意思就是如果 name 为 nil ，newName 就是 “no name”，否则 newName 就是 name!（name的解包）。其实 Swift 为我们提供了更简洁的语法，如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let newName2 = name ?? &quot;no name&quot;</span><br></pre></td></tr></table></figure>
+<p>上面代码的意思就是 name 如果有值 newName2 的值就是 name! ,否则就是 no name 。这里需要注意的是 ??是空合运算符，这样写的可阅读性强，比较简洁。</p>
+<p>当然关于 ?? 远不止这些，有兴趣的同学可以看 <a href="http://www.jianshu.com/p/3ede1ec31351" target="_blank" rel="noopener">聊聊swift语言中的“??”</a> 这篇文章。</p>
+<h1 id="隐式可选型"><a href="#隐式可选型" class="headerlink" title="隐式可选型"></a><strong>隐式可选型</strong></h1><p>上面我们都知道了，创建一个显示可选型是: 类型 + <code>?</code>。这里创建隐式可选型的就是： 类型 + <code>!</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name: String! = &quot;loveway&quot;</span><br></pre></td></tr></table></figure>
+<p>这里可能有的童鞋会疑惑，已经有了显示的可选型，为什么还需要有隐式的可选型。这里其实隐式的可选型也是有一定作用的。比如你有一个变量，声明为隐式的可选型（!），它的作用就是，当你这个类没有被初始化的时候他是没有值的，但是当你这个类初始化以后，你可以确保他是有值的，所以这里声明为隐式的可选型，而不是显示的。同样需要注意的是隐式的可选型也是可选型，如果你需要用它的值，你也是要进行判断的。如果不进行判断而直接使用，可能会造成不可预料的后果！<br>差不多可选型就到这里了，如果还有什么遗漏，欢迎大家指正！</p>
+<p>转自<a href="http://www.jianshu.com/p/1c26b364e0e6" target="_blank" rel="noopener">重读 Swift 之一：Optional（可选型）</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/07/swiftOptional/" data-id="cjg1ulpdz001kxixihm0vd25m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optional/">Optional</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swift/">swift</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/13/fileOperations/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS 常用操作之文件操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/06/swiftMapAndFlatMap/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">谈谈 Swift 中的 map 和 flatMap</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-实用/">iOS 实用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-推送/">iOS 推送</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-网络相关/">iOS 网络相关</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native学习笔记/">react-native学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift学习笔记/">swift学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/8081port/">8081port</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC内存泄漏/">ARC内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crash-Blog/">Crash Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optional/">Optional</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxSwift/">RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UItableView/">UItableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-listView/">android-listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/closure/">closure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/draw/">draw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flatMap/">flatMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/">hello world</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/index-ios-js/">index.ios.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpush/">jpush</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/listView/">listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moya-RxSwift/">moya + RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/onClick/">onClick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rn网络请求/">rn网络请求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地存储/">本地存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地推送/">本地推送</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书，思考/">读书，思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/8081port/" style="font-size: 10px;">8081port</a> <a href="/tags/ARC内存泄漏/" style="font-size: 10px;">ARC内存泄漏</a> <a href="/tags/Crash-Blog/" style="font-size: 10px;">Crash Blog</a> <a href="/tags/Optional/" style="font-size: 10px;">Optional</a> <a href="/tags/RxSwift/" style="font-size: 10px;">RxSwift</a> <a href="/tags/UItableView/" style="font-size: 10px;">UItableView</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/android-listView/" style="font-size: 10px;">android-listView</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/draw/" style="font-size: 10px;">draw</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/flatMap/" style="font-size: 10px;">flatMap</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/index-ios-js/" style="font-size: 10px;">index.ios.js</a> <a href="/tags/jpush/" style="font-size: 10px;">jpush</a> <a href="/tags/listView/" style="font-size: 10px;">listView</a> <a href="/tags/map/" style="font-size: 10px;">map</a> <a href="/tags/moya-RxSwift/" style="font-size: 10px;">moya + RxSwift</a> <a href="/tags/onClick/" style="font-size: 10px;">onClick</a> <a href="/tags/paint/" style="font-size: 10px;">paint</a> <a href="/tags/rn网络请求/" style="font-size: 10px;">rn网络请求</a> <a href="/tags/swift/" style="font-size: 10px;">swift</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/本地存储/" style="font-size: 10px;">本地存储</a> <a href="/tags/本地推送/" style="font-size: 10px;">本地推送</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/读书，思考/" style="font-size: 10px;">读书，思考</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

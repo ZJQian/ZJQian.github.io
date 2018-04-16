@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>iOS 获取crash日志 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
+<meta name="keywords" content="Crash Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 获取crash日志">
+<meta property="og:url" content="http://yoursite.com/2017/04/21/getCrashBlog/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="iOS 获取crash日志">
+<meta name="twitter:description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,216 +65,74 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/08/android-canvas/" class="archive-article-date">
-  <time datetime="2017-06-08T03:56:31.000Z" itemprop="datePublished">Jun 8</time>
+        <section id="main"><article id="post-getCrashBlog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/21/getCrashBlog/" class="article-date">
+  <time datetime="2017-04-21T02:39:05.000Z" itemprop="datePublished">2017-04-21</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS-实用/">iOS 实用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+    <h1 class="article-title" itemprop="name">
+      iOS 获取crash日志
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/07/hello-world/" class="archive-article-date">
-  <time datetime="2017-06-07T13:00:30.000Z" itemprop="datePublished">Jun 7</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/07/hello-world/">Hello World</a>
-    </h1>
-  
+        <p>在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。</p>
+<a id="more"></a>
+<p>这里我用了一种方法，就是当应用在用户使用时发生崩溃现象，会获取到崩溃的日志，然后调起邮箱让用户通过邮件发送给我们。</p>
+<p>具体代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - 获取异常日志</span><br><span class="line"></span><br><span class="line">- (void)installUncaughtExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    NSSetUncaughtExceptionHandler(&amp;UncaughtExceptionHandler);</span><br><span class="line">&#125;</span><br><span class="line">void UncaughtExceptionHandler(NSException *exception) &#123;</span><br><span class="line"></span><br><span class="line">    NSArray *arr = [exception callStackSymbols];</span><br><span class="line">    NSString *reason = [exception reason];</span><br><span class="line">    NSString *name = [exception name];</span><br><span class="line">    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@&quot;CFBundleVersion&quot;];</span><br><span class="line">    NSString *urlStr = [NSString stringWithFormat:@&quot;mailto://developer@qq.com?subject=Crash报告&amp;body=您的建议会让我们做的更好，感谢您的配合！&lt;br&gt;&lt;br&gt;&lt;br&gt;&quot;&quot;错误详情(%@):&lt;br&gt;%@&lt;br&gt;-----------------------&lt;br&gt;%@&lt;br&gt;---------------------&lt;br&gt;%@&quot;,currentVersion,name,reason,[arr componentsJoinedByString:@&quot;&lt;br&gt;&quot;]];</span><br><span class="line">    NSURL *url = [NSURL URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];</span><br><span class="line">    [[UIApplication sharedApplication]openURL:url];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在<code>AppDelegate</code>里的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions&#123;</span><br><span class="line"></span><br><span class="line">//获取异常报告</span><br><span class="line">    [self installUncaughtExceptionHandler];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法中调用就可以了。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/05/android-listView/" class="archive-article-date">
-  <time datetime="2017-06-05T08:34:46.000Z" itemprop="datePublished">Jun 5</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/10/android-onClick/" class="archive-article-date">
-  <time datetime="2017-05-10T05:25:35.000Z" itemprop="datePublished">May 10</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/21/getCrashBlog/" data-id="cjg1ulpcj000fxixi7vg0o6fl" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/03/rn-integration-iosNative/" class="archive-article-date">
-  <time datetime="2017-05-03T02:25:39.000Z" itemprop="datePublished">May 3</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Crash-Blog/">Crash Blog</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/27/react-native-fetch/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React-Native Fetch网络请求
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/18/ARCMemoryLeak/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ARC下的内存泄漏</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/03/studying-thinking/" class="archive-article-date">
-  <time datetime="2017-05-03T02:01:06.000Z" itemprop="datePublished">May 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/03/studying-thinking/">不思考，不读书</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/27/react-native-fetch/" class="archive-article-date">
-  <time datetime="2017-04-27T05:56:46.000Z" itemprop="datePublished">Apr 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/27/react-native-fetch/">React-Native Fetch网络请求</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/21/getCrashBlog/" class="archive-article-date">
-  <time datetime="2017-04-21T02:39:05.000Z" itemprop="datePublished">Apr 21</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/21/getCrashBlog/">iOS 获取crash日志</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/18/ARCMemoryLeak/" class="archive-article-date">
-  <time datetime="2017-04-18T02:59:54.000Z" itemprop="datePublished">Apr 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/18/ARCMemoryLeak/">ARC下的内存泄漏</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/16/visitJinShanCityBeach/" class="archive-article-date">
-  <time datetime="2017-04-16T07:38:24.000Z" itemprop="datePublished">Apr 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/16/visitJinShanCityBeach/">金山城市沙滩游</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         

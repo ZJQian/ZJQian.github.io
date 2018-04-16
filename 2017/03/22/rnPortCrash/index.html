@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>React-Native 奇葩报错 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="刚写了一个react-native小demo，完美运行，心中窃喜，于是关闭项目。过了一会儿，想再一睹刚才如行云流水般运行的项目，于是，运行，结果……纳尼？出现了一片姨妈红有没有？心中一万头草泥马呼啸而过有没有？到底发生了什么？">
+<meta name="keywords" content="8081port">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Native 奇葩报错">
+<meta property="og:url" content="http://yoursite.com/2017/03/22/rnPortCrash/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="刚写了一个react-native小demo，完美运行，心中窃喜，于是关闭项目。过了一会儿，想再一睹刚才如行云流水般运行的项目，于是，运行，结果……纳尼？出现了一片姨妈红有没有？心中一万头草泥马呼啸而过有没有？到底发生了什么？">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="React-Native 奇葩报错">
+<meta name="twitter:description" content="刚写了一个react-native小demo，完美运行，心中窃喜，于是关闭项目。过了一会儿，想再一睹刚才如行云流水般运行的项目，于是，运行，结果……纳尼？出现了一片姨妈红有没有？心中一万头草泥马呼啸而过有没有？到底发生了什么？">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,216 +65,80 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/08/android-canvas/" class="archive-article-date">
-  <time datetime="2017-06-08T03:56:31.000Z" itemprop="datePublished">Jun 8</time>
+        <section id="main"><article id="post-rnPortCrash" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/22/rnPortCrash/" class="article-date">
+  <time datetime="2017-03-22T07:47:20.000Z" itemprop="datePublished">2017-03-22</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/react-native学习笔记/">react-native学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+    <h1 class="article-title" itemprop="name">
+      React-Native 奇葩报错
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/07/hello-world/" class="archive-article-date">
-  <time datetime="2017-06-07T13:00:30.000Z" itemprop="datePublished">Jun 7</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/07/hello-world/">Hello World</a>
-    </h1>
-  
+        <p>刚写了一个react-native小demo，完美运行，心中窃喜，于是关闭项目。过了一会儿，想再一睹刚才如行云流水般运行的项目，于是，运行，结果……纳尼？出现了一片姨妈红有没有？心中一万头草泥马呼啸而过有没有？到底发生了什么？<br><a id="more"></a></p>
+<p>NA！阿sir啊，我说了我没动过代码啦，出现下面这种错误不关我的事啊：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ProjectName has not been registered. </span><br><span class="line">This is either due to a require() error during initialization or failure to call AppRegistry.registerComponent.</span><br></pre></td></tr></table></figure></p>
+<p>分析错误原因：</p>
+<h2 id="1-第一种情况："><a href="#1-第一种情况：" class="headerlink" title="1.第一种情况："></a><strong>1.第一种情况：</strong></h2><p>程序入口处项目名称不一致。检查发现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AppRegistry.registerComponent(&apos;ProjectName&apos;, () =&gt; ProjectName);</span><br></pre></td></tr></table></figure>
+<p>一模一样！为了担心怕自己的眼睛看到的不是真实的，特地粘贴复制了一遍！</p>
+<p>第一种情况排除！</p>
+<h2 id="2-第二种情况"><a href="#2-第二种情况" class="headerlink" title="2.第二种情况"></a><strong>2.第二种情况</strong></h2><p><strong>8081端口被占用</strong></p>
+<p><code>检验方法：到项目根目录下---------&gt;&gt;&gt;打开终端---------&gt;&gt;&gt;输入命令行：react-native start</code></p>
+<p>如果出现了<code>Packager can&#39;t listen on port 8081</code>,好的恭喜你，找到了症结所在，下面就是根据提示来就好了：</p>
+<p><1>.lsof -i : 8081 //列出被占用的端口</1></p>
+<p><2>.kill -9 &lt; PID &gt;  //找出与之对应的PID，杀死就ok了</2></p>
+<p><3>.重新运行项目</3></p>
+<p><4>.依旧完美</4></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/05/android-listView/" class="archive-article-date">
-  <time datetime="2017-06-05T08:34:46.000Z" itemprop="datePublished">Jun 5</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/10/android-onClick/" class="archive-article-date">
-  <time datetime="2017-05-10T05:25:35.000Z" itemprop="datePublished">May 10</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/22/rnPortCrash/" data-id="cjg1ulpdi0014xixiatbsciw8" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/03/rn-integration-iosNative/" class="archive-article-date">
-  <time datetime="2017-05-03T02:25:39.000Z" itemprop="datePublished">May 3</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/8081port/">8081port</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/30/jpush/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          极光推送开发环境可以收到,生产环境收不到推送
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/22/explainIndexiosjs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React-Native 之index.ios.js解读</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/03/studying-thinking/" class="archive-article-date">
-  <time datetime="2017-05-03T02:01:06.000Z" itemprop="datePublished">May 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/03/studying-thinking/">不思考，不读书</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/27/react-native-fetch/" class="archive-article-date">
-  <time datetime="2017-04-27T05:56:46.000Z" itemprop="datePublished">Apr 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/27/react-native-fetch/">React-Native Fetch网络请求</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/21/getCrashBlog/" class="archive-article-date">
-  <time datetime="2017-04-21T02:39:05.000Z" itemprop="datePublished">Apr 21</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/21/getCrashBlog/">iOS 获取crash日志</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/18/ARCMemoryLeak/" class="archive-article-date">
-  <time datetime="2017-04-18T02:59:54.000Z" itemprop="datePublished">Apr 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/18/ARCMemoryLeak/">ARC下的内存泄漏</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/16/visitJinShanCityBeach/" class="archive-article-date">
-  <time datetime="2017-04-16T07:38:24.000Z" itemprop="datePublished">Apr 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/16/visitJinShanCityBeach/">金山城市沙滩游</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         

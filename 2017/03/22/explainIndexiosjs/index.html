@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>React-Native 之index.ios.js解读 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="撸代码之前还是要搞清楚作用比较好，不然洋洋洒洒的撸了个天昏地暗，却不知道为什么用这个姿势撸，不就尴尬了吗？要知其然，还要知其所以然，论掌握撸代码姿势的重要性！">
+<meta name="keywords" content="index.ios.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Native 之index.ios.js解读">
+<meta property="og:url" content="http://yoursite.com/2017/03/22/explainIndexiosjs/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="撸代码之前还是要搞清楚作用比较好，不然洋洋洒洒的撸了个天昏地暗，却不知道为什么用这个姿势撸，不就尴尬了吗？要知其然，还要知其所以然，论掌握撸代码姿势的重要性！">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-Native 之index.ios.js解读">
+<meta name="twitter:description" content="撸代码之前还是要搞清楚作用比较好，不然洋洋洒洒的撸了个天昏地暗，却不知道为什么用这个姿势撸，不就尴尬了吗？要知其然，还要知其所以然，论掌握撸代码姿势的重要性！">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-explainIndexiosjs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/22/explainIndexiosjs/" class="article-date">
+  <time datetime="2017-03-22T03:23:30.000Z" itemprop="datePublished">2017-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/react-native学习笔记/">react-native学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React-Native 之index.ios.js解读
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>撸代码之前还是要搞清楚作用比较好，不然洋洋洒洒的撸了个天昏地暗，却不知道为什么用这个姿势撸，不就尴尬了吗？要知其然，还要知其所以然，论掌握撸代码姿势的重要性！<br><a id="more"></a></p>
+<hr>
+<p>React.native是facebook开源的一套基于JavaScript的开源框架，<br>很方便用来开发移动设备的app。<br>而且，方便及时更新app的UI与数据，也很方便部署。</p>
+<hr>
+<p>在react-native的ios项目中，界面搭建部分是一个js文件：index.ios.js。下面对这个文件进行一下解读，方便后续开发中明白各个部分的作用。</p>
+<h2 id="1、引用React"><a href="#1、引用React" class="headerlink" title="1、引用React"></a><strong>1、引用React</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br></pre></td></tr></table></figure>
+<h2 id="2、控件的引入"><a href="#2、控件的引入" class="headerlink" title="2、控件的引入"></a><strong>2、控件的引入</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123;</span><br><span class="line">AppRegistry,</span><br><span class="line">StyleSheet,</span><br><span class="line">Text,</span><br><span class="line">View,</span><br><span class="line">ListView,</span><br><span class="line">TouchableOpacity</span><br><span class="line">&#125; from &apos;react-native&apos;;</span><br></pre></td></tr></table></figure>
+<h2 id="3、样式设置"><a href="#3、样式设置" class="headerlink" title="3、样式设置"></a><strong>3、样式设置</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//设置样式</span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">container: &#123;</span><br><span class="line">flex: 1,</span><br><span class="line">justifyContent: &apos;center&apos;,</span><br><span class="line">alignItems: &apos;center&apos;,</span><br><span class="line">backgroundColor: &apos;#F5FCFF&apos;,</span><br><span class="line">&#125;,</span><br><span class="line">welcome: &#123;</span><br><span class="line">fontSize: 20,</span><br><span class="line">textAlign: &apos;center&apos;,</span><br><span class="line">margin: 10,</span><br><span class="line">&#125;,</span><br><span class="line">instructions: &#123;</span><br><span class="line">textAlign: &apos;center&apos;,</span><br><span class="line">color: &apos;#333333&apos;,</span><br><span class="line">marginBottom: 5,</span><br><span class="line">&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>作用：定义了一段应用在 “Hello World” 文本上的样式。</p>
+<p><strong>React Native 使用 CSS 来定义应用界面的样式。</strong></p>
+<h2 id="4、创建React组件对应的类"><a href="#4、创建React组件对应的类" class="headerlink" title="4、创建React组件对应的类"></a><strong>4、创建React组件对应的类</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">export default class HelloWorld extends Component &#123;</span><br><span class="line">render() &#123;</span><br><span class="line">return (</span><br><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">&lt;Text style=&#123;styles.welcome&#125;&gt;</span><br><span class="line">Welcome to React Native!</span><br><span class="line">&lt;/Text&gt;</span><br><span class="line">&lt;Text style=&#123;styles.instructions&#125;&gt;</span><br><span class="line">To get started, edit index.android.js</span><br><span class="line">&lt;/Text&gt;</span><br><span class="line">&lt;Text style=&#123;styles.instructions&#125;&gt;</span><br><span class="line">Double tap R on your keyboard to reload,&#123;&apos;\n&apos;&#125;</span><br><span class="line">Shake or press menu button for dev menu</span><br><span class="line">&lt;/Text&gt;</span><br><span class="line">&lt;/View&gt;</span><br><span class="line">);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>作用：描述将要创建的组件，包括各种行为和属性。</p>
+<h2 id="5、解释一下"><a href="#5、解释一下" class="headerlink" title="5、解释一下"></a><strong>5、解释一下</strong></h2><ul>
+<li>组件渲染的方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">return ();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：只有当组件被渲染时，必须实现render接口方法，因为，只有render方法，是用于输出内容组件内容的；其他接口方法，都是可选的。</p>
+<ul>
+<li>标签<view>定义视图</view></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>作用：设置显示区域，相当于iOS中的UIView控件（Objective-c和Swift）</p>
+<ul>
+<li>标签<text>定义文本</text></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Text style=&#123;styles.welcome&#125;&gt;</span><br><span class="line">Welcome to React Native!</span><br><span class="line">&lt;/Text&gt;</span><br></pre></td></tr></table></figure>
+<p>作用：设置并显示字符串，相当于iOS的UILabel控件（Objective-c和Swift）。</p>
+<ul>
+<li>定义程序入口</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AppRegistry.registerComponent(&apos;HelloWorld&apos;, () =&gt; HelloWorld);</span><br></pre></td></tr></table></figure>
+<p>作用：用AppRegistry的registerComponent( )方法，定义了App的入口，并提供了根组件。</p>
+<p>转自：<a href="http://blog.csdn.net/maoyingyong/article/details/46439951" target="_blank" rel="noopener">http://blog.csdn.net/maoyingyong/article/details/46439951</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/22/explainIndexiosjs/" data-id="cjg1ulpca000axixiirlcm11d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/index-ios-js/">index.ios.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/22/rnPortCrash/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React-Native 奇葩报错
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/22/react-native-listView/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React-Native 之ListView</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-实用/">iOS 实用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-推送/">iOS 推送</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-网络相关/">iOS 网络相关</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native学习笔记/">react-native学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift学习笔记/">swift学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/8081port/">8081port</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC内存泄漏/">ARC内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crash-Blog/">Crash Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optional/">Optional</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxSwift/">RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UItableView/">UItableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-listView/">android-listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/closure/">closure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/draw/">draw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flatMap/">flatMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/">hello world</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/index-ios-js/">index.ios.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpush/">jpush</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/listView/">listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moya-RxSwift/">moya + RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/onClick/">onClick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rn网络请求/">rn网络请求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地存储/">本地存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地推送/">本地推送</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书，思考/">读书，思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/8081port/" style="font-size: 10px;">8081port</a> <a href="/tags/ARC内存泄漏/" style="font-size: 10px;">ARC内存泄漏</a> <a href="/tags/Crash-Blog/" style="font-size: 10px;">Crash Blog</a> <a href="/tags/Optional/" style="font-size: 10px;">Optional</a> <a href="/tags/RxSwift/" style="font-size: 10px;">RxSwift</a> <a href="/tags/UItableView/" style="font-size: 10px;">UItableView</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/android-listView/" style="font-size: 10px;">android-listView</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/draw/" style="font-size: 10px;">draw</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/flatMap/" style="font-size: 10px;">flatMap</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/index-ios-js/" style="font-size: 10px;">index.ios.js</a> <a href="/tags/jpush/" style="font-size: 10px;">jpush</a> <a href="/tags/listView/" style="font-size: 10px;">listView</a> <a href="/tags/map/" style="font-size: 10px;">map</a> <a href="/tags/moya-RxSwift/" style="font-size: 10px;">moya + RxSwift</a> <a href="/tags/onClick/" style="font-size: 10px;">onClick</a> <a href="/tags/paint/" style="font-size: 10px;">paint</a> <a href="/tags/rn网络请求/" style="font-size: 10px;">rn网络请求</a> <a href="/tags/swift/" style="font-size: 10px;">swift</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/本地存储/" style="font-size: 10px;">本地存储</a> <a href="/tags/本地推送/" style="font-size: 10px;">本地推送</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/读书，思考/" style="font-size: 10px;">读书，思考</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

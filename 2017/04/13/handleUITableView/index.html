@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>iOS UITableView的一些琐碎 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="表格UITableView基本上开发中应用最常用的控件之一了，关于tableview你又了解多少呢，反正我是只知道一些常规的用法，现在把之前写过的项目中应用到的一些小细节总结一下。">
+<meta name="keywords" content="UItableView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS UITableView的一些琐碎">
+<meta property="og:url" content="http://yoursite.com/2017/04/13/handleUITableView/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="表格UITableView基本上开发中应用最常用的控件之一了，关于tableview你又了解多少呢，反正我是只知道一些常规的用法，现在把之前写过的项目中应用到的一些小细节总结一下。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2074437-d29da2b87b099b3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS UITableView的一些琐碎">
+<meta name="twitter:description" content="表格UITableView基本上开发中应用最常用的控件之一了，关于tableview你又了解多少呢，反正我是只知道一些常规的用法，现在把之前写过的项目中应用到的一些小细节总结一下。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2074437-d29da2b87b099b3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-handleUITableView" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/13/handleUITableView/" class="article-date">
+  <time datetime="2017-04-13T09:36:27.000Z" itemprop="datePublished">2017-04-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS-实用/">iOS 实用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS UITableView的一些琐碎
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>表格UITableView基本上开发中应用最常用的控件之一了，关于tableview你又了解多少呢，反正我是只知道一些常规的用法，现在把之前写过的项目中应用到的一些小细节总结一下。<br><a id="more"></a></p>
+<h1 id="cell分割线"><a href="#cell分割线" class="headerlink" title="cell分割线"></a><strong>cell分割线</strong></h1><p>这个不知道是不是我自己的问题，第一次遇到要将cell分割线与屏幕边缘没有间距的需求时，试了好多方法！</p>
+<h2 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a><strong>第一种方法</strong></h2><p>下面的这个在Objective-C里写了没有什么效果，但在Swift中可以完美执行，我不知道是不是我一个人的问题。贴出来这个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tableView.separatorInset = UIEdgeInsetsZero;</span><br></pre></td></tr></table></figure>
+<h2 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a><strong>第二种方法</strong></h2><p>这个方法是在论坛里看到的，试了试，可以的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath&#123;</span><br><span class="line"></span><br><span class="line">    cell.separatorInset = UIEdgeInsetsZero;</span><br><span class="line">    cell.layoutMargins = UIEdgeInsetsZero;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>tableView的这个代理方法是在cell将要出现在屏幕的时候调用。但是这种方法和第一种方法有个什么问题呢？就是不能将<code>tableView.separatorStyle</code>设置为<code>UITableViewCellSeparatorStyleNone</code>,这样就导致了如果cell的个数不足以充满屏幕的话，会在cell的底部看到空余的cell分割线，这对于我这个强迫症是不能忍的，当然了也有解决办法，就是添加一句：<code>tableView.tableFooterView = [UIView new];</code>就OK了。</p>
+<h2 id="第三种方法"><a href="#第三种方法" class="headerlink" title="第三种方法"></a><strong>第三种方法</strong></h2><p>自从在oc中知道第一种方法不能用之后，基本上我都在用这种方法，就是在自定义的cell里重新画线。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (void)drawRect:(CGRect)rect &#123;</span><br><span class="line"></span><br><span class="line">    [super drawRect:rect];</span><br><span class="line">    </span><br><span class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</span><br><span class="line">    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);</span><br><span class="line">    CGContextFillRect(context, rect);</span><br><span class="line">    </span><br><span class="line">    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:225.0/255.0 green:225.0/255.0 blue:225.0/255.0 alpha:1.0].CGColor);</span><br><span class="line">    CGContextStrokeRect(context, CGRectMake(0, 0, SCREEN_WIDTH, 0.5));</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:225.0/255.0 green:225.0/255.0 blue:225.0/255.0 alpha:1.0].CGColor);</span><br><span class="line">    CGContextStrokeRect(context, CGRectMake(0, rect.size.height-0.5, SCREEN_WIDTH, 0.5));</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重新绘制的话，可以设置分割线的颜色，长度，高度。</p>
+<h1 id="卡片式cell"><a href="#卡片式cell" class="headerlink" title="卡片式cell"></a><strong>卡片式cell</strong></h1><p>就是下面这种效果：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2074437-d29da2b87b099b3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="卡片式cell"></p>
+<p>实现这种效果我已知的有三种效果：</p>
+<h2 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a><strong>第一种</strong></h2><p>通过设置<code>cell</code>的<code>contentView</code>来间接实现，在<code>cell</code>的<code>contentView</code>的顶部或者底部留下一定的间距，这样就会有<code>cell</code>间就有间距的效果。但是这种方式在<code>cell</code>有点击效果的时候，会很明显的看出有分层，因为这时候<code>cell</code>是被点击的，<code>contentView</code>都会有系统点击的阴影效果。这种方式在<code>cell</code>左滑删除，置顶等操作的时候，左滑出的视图会高出一部分（左滑显示出的高度=（cell的高度-留下的间距高度）+ 留下的间距高度），很显然这种方式有致命缺陷。</p>
+<p><strong>建议还是不要第一种方法</strong></p>
+<h2 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a><strong>第二种</strong></h2><p>通过分组的方式间接的实现，每组的Header可以当做是cell之间的间距，每组中只有一个cell：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView &#123; </span><br><span class="line">    </span><br><span class="line">    return 10;</span><br><span class="line">&#125; </span><br><span class="line">- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section &#123; </span><br><span class="line"></span><br><span class="line">	return 10;</span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section &#123; </span><br><span class="line"></span><br><span class="line">	return 1;</span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line">- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath &#123; </span><br><span class="line"></span><br><span class="line">	return 100;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是呢，这还是会出现一个问题，因为系统默认分组的时候每组的Header会停留在tableview的顶部，这要怎么处理呢？网上也有一种解决办法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (void)scrollViewDidScroll:(UIScrollView *)scrollView &#123; </span><br><span class="line"></span><br><span class="line">	if (scrollView == self.tableView) &#123; </span><br><span class="line">	</span><br><span class="line">		CGFloat sectionHeaderHeight = 10; </span><br><span class="line">		</span><br><span class="line">		if (scrollView.contentOffset.y &lt;= sectionHeaderHeight &amp;&amp; scrollView.contentOffset.y &gt;= 0) &#123; </span><br><span class="line">			</span><br><span class="line">			scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0); </span><br><span class="line">			&#125; else if (scrollView.contentOffset.y &gt;= sectionHeaderHeight) &#123; </span><br><span class="line">			</span><br><span class="line">			scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0); </span><br><span class="line">		&#125; </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是这种方式是通过scroll偏移量来监听和改变tableview的contentInset，因为只要UITableView在滚动就一直在运行，不是很好。</p>
+<h2 id="第三种"><a href="#第三种" class="headerlink" title="第三种"></a><strong>第三种</strong></h2><p>重写cell的setFrame方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (void)setFrame:(CGRect)frame &#123;</span><br><span class="line"></span><br><span class="line">    frame.origin.x = 15;</span><br><span class="line">    frame.size.width -= 2 * frame.origin.x;</span><br><span class="line">    frame.size.height -= 15;</span><br><span class="line">    frame.origin.y += 10;</span><br><span class="line">    [super setFrame:frame];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式看上去很优雅，其实也有缺点，就是不适合有编辑的情况，因为在编辑的时候会不停调用setFrame方法，导致错乱，此时建议使用上面的第二种方案。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/13/handleUITableView/" data-id="cjg1ulpcn000hxixiy04an268" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UItableView/">UItableView</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/14/localNotification/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS 本地推送（通知）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/13/fileOperations/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS 常用操作之文件操作</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-实用/">iOS 实用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-推送/">iOS 推送</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-网络相关/">iOS 网络相关</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native学习笔记/">react-native学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift学习笔记/">swift学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/8081port/">8081port</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC内存泄漏/">ARC内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crash-Blog/">Crash Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optional/">Optional</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxSwift/">RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UItableView/">UItableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-listView/">android-listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/closure/">closure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/draw/">draw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flatMap/">flatMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/">hello world</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/index-ios-js/">index.ios.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpush/">jpush</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/listView/">listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moya-RxSwift/">moya + RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/onClick/">onClick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rn网络请求/">rn网络请求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地存储/">本地存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地推送/">本地推送</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书，思考/">读书，思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/8081port/" style="font-size: 10px;">8081port</a> <a href="/tags/ARC内存泄漏/" style="font-size: 10px;">ARC内存泄漏</a> <a href="/tags/Crash-Blog/" style="font-size: 10px;">Crash Blog</a> <a href="/tags/Optional/" style="font-size: 10px;">Optional</a> <a href="/tags/RxSwift/" style="font-size: 10px;">RxSwift</a> <a href="/tags/UItableView/" style="font-size: 10px;">UItableView</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/android-listView/" style="font-size: 10px;">android-listView</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/draw/" style="font-size: 10px;">draw</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/flatMap/" style="font-size: 10px;">flatMap</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/index-ios-js/" style="font-size: 10px;">index.ios.js</a> <a href="/tags/jpush/" style="font-size: 10px;">jpush</a> <a href="/tags/listView/" style="font-size: 10px;">listView</a> <a href="/tags/map/" style="font-size: 10px;">map</a> <a href="/tags/moya-RxSwift/" style="font-size: 10px;">moya + RxSwift</a> <a href="/tags/onClick/" style="font-size: 10px;">onClick</a> <a href="/tags/paint/" style="font-size: 10px;">paint</a> <a href="/tags/rn网络请求/" style="font-size: 10px;">rn网络请求</a> <a href="/tags/swift/" style="font-size: 10px;">swift</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/本地存储/" style="font-size: 10px;">本地存储</a> <a href="/tags/本地推送/" style="font-size: 10px;">本地推送</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/读书，思考/" style="font-size: 10px;">读书，思考</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

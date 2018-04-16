@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>谈谈 Swift 中的 map 和 flatMap | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="map 和 flatMap 是 Swift 中两个常用的函数，它们体现了 Swift 中很多的特性。对于简单的使用来说，它们的接口并不复杂，但它们内部的机制还是非常值得研究的，能够帮助我们够好的理解 Swift 语言。 map 简介首先，咱们说说 map 函数如何使用。 123let numbers = [1,2,3,4]let result = numbers.map &amp;#123; $0 + 2">
+<meta name="keywords" content="map,flatMap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈 Swift 中的 map 和 flatMap">
+<meta property="og:url" content="http://yoursite.com/2017/04/06/swiftMapAndFlatMap/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="map 和 flatMap 是 Swift 中两个常用的函数，它们体现了 Swift 中很多的特性。对于简单的使用来说，它们的接口并不复杂，但它们内部的机制还是非常值得研究的，能够帮助我们够好的理解 Swift 语言。 map 简介首先，咱们说说 map 函数如何使用。 123let numbers = [1,2,3,4]let result = numbers.map &amp;#123; $0 + 2">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谈谈 Swift 中的 map 和 flatMap">
+<meta name="twitter:description" content="map 和 flatMap 是 Swift 中两个常用的函数，它们体现了 Swift 中很多的特性。对于简单的使用来说，它们的接口并不复杂，但它们内部的机制还是非常值得研究的，能够帮助我们够好的理解 Swift 语言。 map 简介首先，咱们说说 map 函数如何使用。 123let numbers = [1,2,3,4]let result = numbers.map &amp;#123; $0 + 2">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-swiftMapAndFlatMap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/06/swiftMapAndFlatMap/" class="article-date">
+  <time datetime="2017-04-06T01:59:45.000Z" itemprop="datePublished">2017-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/swift学习笔记/">swift学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      谈谈 Swift 中的 map 和 flatMap
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>map</code> 和 <code>flatMap</code> 是 <code>Swift</code> 中两个常用的函数，它们体现了 <code>Swift</code> 中很多的特性。对于简单的使用来说，它们的接口并不复杂，但它们内部的机制还是非常值得研究的，能够帮助我们够好的理解 <code>Swift</code> 语言。</p>
+<h1 id="map-简介"><a href="#map-简介" class="headerlink" title="map 简介"></a><strong>map 简介</strong></h1><p>首先，咱们说说 map 函数如何使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let numbers = [1,2,3,4]</span><br><span class="line">let result = numbers.map &#123; $0 + 2 &#125;</span><br><span class="line">print(result)  // [3,4,5,6]</span><br></pre></td></tr></table></figure>
+<p><code>map</code> 方法接受一个闭包作为参数， 然后它会遍历整个 <code>numbers</code> 数组，并对数组中每一个元素执行闭包中定义的操作。 相当于对数组中的所有元素做了一个映射。 比如咱们这个例子里面的闭包是讲所有元素都加 <code>2</code> 。 这样它产生的结果数据就是 <code>[3,4,5,6]</code>。</p>
+<p>初步了解之后，我们来看一下 <code>map</code> 的定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func map&lt;T&gt;(@noescape transform: (Self.Generator.Element) throws -&gt; T) rethrows -&gt; [T]</span><br></pre></td></tr></table></figure>
+<p>咱们抛开一些和关键逻辑无关的修饰符 <code>@noescape</code>,<code>throws</code> 这些，在整理一下就是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func map&lt;T&gt;(transform: (Self.Generator.Element) -&gt; T) rethrows -&gt; [T]</span><br></pre></td></tr></table></figure>
+<p><code>map</code> 函数接受一个闭包， 这个闭包的定义是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(Self.Generator.Element) -&gt; T</span><br></pre></td></tr></table></figure>
+<p>它接受 <code>Self.Generator.Element</code> 类型的参数， 这个类型代表数组中当前元素的类型。 而这个闭包的返回值，是可以和传递进来的值不同的。 比如我们可以这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let stringResult = numbers.map &#123; &quot;No. \($0)&quot; &#125;</span><br><span class="line">// [&quot;No. 1&quot;, &quot;No. 2&quot;, &quot;No. 3&quot;, &quot;No. 4&quot;]</span><br></pre></td></tr></table></figure>
+<p>这次我们在闭包装把传递进来的数字拼接到一个字符串中， 然后返回一个组数， 这个数组中包含的数据类型，就是我们拼接好的字符串。</p>
+<p>这就是关于 <code>map</code> 的初步了解， 我们继续来看 <code>flatMap</code>。</p>
+<h1 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a><strong>flatMap</strong></h1><p><code>map</code> 可以对一个集合类型的所有元素做一个映射操作。 那么 <code>flatMap</code> 呢？</p>
+<p>让我们来看一个 <code>flatMap</code> 的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">result = numbers.flatMap &#123; $0 + 2 &#125;</span><br><span class="line">// [3,4,5,6]</span><br></pre></td></tr></table></figure>
+<p>我们对同样的数组使用 <code>flatMap</code> 进行处理， 得到了同样的结果。 那 <code>flatMap</code> 和 <code>map</code> 到底有什么区别呢？</p>
+<p>咱们再来看另一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let numbersCompound = [[1,2,3],[4,5,6]];</span><br><span class="line">var res = numbersCompound.map &#123; $0.map&#123; $0 + 2 &#125; &#125;</span><br><span class="line">// [[3, 4, 5], [6, 7, 8]]</span><br><span class="line">var flatRes = numbersCompound.flatMap &#123; $0.map&#123; $0 + 2 &#125; &#125;</span><br><span class="line">// [3, 4, 5, 6, 7, 8]</span><br></pre></td></tr></table></figure>
+<p>这里就看出差别了。 对于二维数组， <code>map</code> 和 <code>flatMap</code> 的结果就不同了。 我们先来看第一个调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var res = numbersCompound.map &#123; $0.map&#123; $0 + 2 &#125; &#125;</span><br><span class="line">// [[3, 4, 5], [6, 7, 8]]</span><br></pre></td></tr></table></figure>
+<p><code>numbersCompound.map { ... }</code> 这个调用实际上是遍历了这里两个数组元素 <code>[1,2,3]</code> 和 <code>[4,5,6]</code>。 因为这两个元素依然是数组，所以我们可以对他们再次调用 <code>map</code> 函数：<code>$0.map{ $0 + 2 }</code>。 这个内部的调用最终将数组中所有的元素加 <code>2</code>。</p>
+<p>再来看看 <code>flatMap</code> 的调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var flatRes = numbersCompound.flatMap &#123; $0.map&#123; $0 + 2 &#125; &#125;</span><br><span class="line">// [3, 4, 5, 6, 7, 8]</span><br></pre></td></tr></table></figure>
+<p><code>flatMap</code> 依然会遍历数组的元素，并对这些元素执行闭包中定义的操作。 但唯一不同的是，它对最终的结果进行了所谓的 “降维” 操作。 本来原始数组是一个二维的， 但经过 <code>flatMap</code> 之后，它变成一维的了。</p>
+<p><code>flatMap</code> 是如何做到的呢，它的原理是什么，为什么会存在这样一个函数呢？ 相信此时你脑海中肯定会浮现出类似的问题。</p>
+<p>下面咱们再来看一下 <code>flatMap</code> 的定义, 还是抛去 <code>@noescape</code>, <code>rethrows</code> 这些无关逻辑的关键字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func flatMap&lt;T&gt;(transform: (Self.Generator.Element) throws -&gt; T?) -&gt; [T]</span><br><span class="line">func flatMap&lt;S : SequenceType&gt;(transform: (Self.Generator.Element) -&gt; S) -&gt; [S.Generator.Element]</span><br></pre></td></tr></table></figure>
+<p>和 <code>map</code> 不同， <code>flatMap</code> 有两个重载。 参照我们刚才的示例， 我们调用的其实是第二个重载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func flatMap&lt;S : SequenceType&gt;(transform: (Self.Generator.Element) -&gt; S) -&gt; [S.Generator.Element]</span><br></pre></td></tr></table></figure>
+<p><code>flatMap</code> 的闭包接受的是数组的元素，但返回的是一个 <code>SequenceType</code> 类型，也就是另外一个数组。 这从我们刚才这个调用中不难看出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numbersCompound.flatMap &#123; $0.map&#123; $0 + 2 &#125; &#125;</span><br></pre></td></tr></table></figure>
+<p>我们传入给 <code>flatMap</code> 一个闭包 <code>$0.map{ $0 + 2 }</code> , 这个闭包中，又对 <code>$0</code> 调用了 <code>map</code> 方法， 从 <code>map</code> 方法的定义中我们能够知道，它返回的还是一个集合类型，也就是 <code>SequenceType</code>。 所以我们这个 <code>flatMap</code> 的调用对应的就是第二个重载形式。</p>
+<p>那么为什么 <code>flatMap</code> 调用后会对数组降维呢？ 我们可以从它的源码中窥探一二（<code>Swift</code> 不是开源了吗~）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">extension Sequence &#123;</span><br><span class="line">    </span><br><span class="line">    //...</span><br><span class="line">    </span><br><span class="line">public func flatMap&lt;S : Sequence&gt;(</span><br><span class="line">    @noescape transform: ($&#123;GElement&#125;) throws -&gt; S</span><br><span class="line">  ) rethrows -&gt; [S.$&#123;GElement&#125;] &#123;</span><br><span class="line">    var result: [S.$&#123;GElement&#125;] = []</span><br><span class="line">    for element in self &#123;</span><br><span class="line">      result.append(contentsOf: try transform(element))</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  //...</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这就是 <code>flatMap</code> 的完整源码了， 它的源码也很简单， 对遍历的每一个元素调用 <code>try transform(element)</code>。 <code>transform</code> 函数就是我们传递进来的闭包。</p>
+<p>然后将闭包的返回值通过 <code>result.append(contentsOf:)</code> 函数添加到 <code>result</code> 数组中。</p>
+<p>那我们再来看一下 <code>result.append(contentsOf:)</code> 都做了什么， 它的文档定义是这样：</p>
+<blockquote>
+<p>Append the elements of newElements to self.</p>
+</blockquote>
+<p>简单说就是将一个集合中的所有元素，添加到另一个集合。 还以我们刚才这个二维数组为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let numbersCompound = [[1,2,3],[4,5,6]];</span><br><span class="line">var flatRes = numbersCompound.flatMap &#123; $0.map&#123; $0 + 2 &#125; &#125;</span><br><span class="line">// [3, 4, 5, 6, 7, 8]</span><br></pre></td></tr></table></figure>
+<p><code>flatMap</code> 首先会遍历这个数组的两个元素 <code>[1,2,3]</code> 和 <code>[4,5,6]</code>， 因为这两个元素依然是数组， 所以我们可以对他们再进行 <code>map</code> 操作： <code>$0.map{ $0 + 2 }</code>。</p>
+<p>这样， 内部的 <code>$0.map{ $0 + 2 }</code> 调用返回值类型还是数组， 它会返回 <code>[3,4,5]</code> 和 <code>[6,7,8]</code>。</p>
+<p>然后， <code>flatMap</code> 接收到内部闭包的这两个返回结果， 进而调用 <code>result.append(contentsOf:)</code> 将它们的数组中的内容添加到结果集中，而不是数组本身。</p>
+<p>那么我们最终的调用结果理所当然就应该是 <code>[3, 4, 5, 6, 7, 8]</code> 了。</p>
+<p>仔细想想是不是这样呢~</p>
+<h1 id="flatMap-的另一个重载"><a href="#flatMap-的另一个重载" class="headerlink" title="flatMap 的另一个重载"></a><strong>flatMap 的另一个重载</strong></h1><p>我们刚才分析了半天， 其实只分析到 <code>flatMap</code> 的一种重载情况， 那么另外一种重载又是怎么回事呢：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func flatMap&lt;T&gt;(transform: (Self.Generator.Element) -&gt; T?) -&gt; [T]</span><br></pre></td></tr></table></figure>
+<p>从定义中我们看出， 它的闭包接收的是 <code>Self.Generator.Element</code> 类型， 返回的是一个 <code>T?</code> 。 我们都知道，在 <code>Swift</code> 中类型后面跟随一个 <code>?</code>， 代表的是 <code>Optional</code> 值。 也就是说这个重载中接收的闭包返回的是一个 <code>Optional</code> 值。 更进一步来说，就是闭包可以返回 <code>nil</code>。</p>
+<p>我们来看一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let optionalArray: [String?] = [&quot;AA&quot;, nil, &quot;BB&quot;, &quot;CC&quot;];</span><br><span class="line">var optionalResult = optionalArray.flatMap&#123; $0 &#125;</span><br><span class="line">// [&quot;AA&quot;, &quot;BB&quot;, &quot;CC&quot;]</span><br></pre></td></tr></table></figure>
+<p>这样竟然没有报错， 并且 <code>flatMap</code> 的返回结果中， 成功的将原数组中的 <code>nil</code> 值过滤掉了。 再仔细观察，你会发现更多。 使用 <code>flatMap</code> 调用之后， 数组中的所有元素都被解包了， 如果同样使用 <code>print</code> 函数输出原始数组的话， 大概会得到这样的结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Optional(&quot;AA&quot;), nil, Optional(&quot;BB&quot;), Optional(&quot;CC&quot;)]</span><br></pre></td></tr></table></figure>
+<p>而使用 <code>print</code> 函数输出 <code>flatMap</code> 的结果集时，会得到这样的输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&quot;AA&quot;, &quot;BB&quot;, &quot;CC&quot;]</span><br></pre></td></tr></table></figure>
+<p>也就是说原始数组的类型是 <code>[String?]</code> 而 <code>flatMap</code> 调用后变成了 <code>[String]</code>。 这也是 <code>flatMap</code> 和 <code>map</code> 的一个重大区别。 如果同样的数组，我们使用 <code>map</code> 来调用， 得到的是这样的输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Optional(&quot;AA&quot;), nil, Optional(&quot;BB&quot;), Optional(&quot;CC&quot;)]</span><br></pre></td></tr></table></figure>
+<p>这就和原始数组一样了。 这两者的区别就是这样。 map 函数值对元素进行变换操作。 但不会对数组的结构造成影响。 而 flatMap 会影响数组的结构。再进一步分析之前，我们暂且这样理解。</p>
+<p><code>flatMap</code> 的这种机制，而已帮助我们方便的对数据进行验证，比如我们有一组图片文件名， 我们可以使用 <code>flatMap</code> 将无效的图片过滤掉：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var imageNames = [&quot;test.png&quot;, &quot;aa.png&quot;, &quot;icon.png&quot;];</span><br><span class="line">imageNames.flatMap&#123; UIImage(named: $0) &#125;</span><br></pre></td></tr></table></figure>
+<p>那么 <code>flatMap</code> 是如何实现过滤掉 <code>nil</code> 值的呢？ 我们还是来看一下源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">extension Sequence &#123;</span><br><span class="line">  </span><br><span class="line">  // ... </span><br><span class="line">  public func flatMap&lt;T&gt;(</span><br><span class="line">    @noescape transform: ($&#123;GElement&#125;) throws -&gt; T?</span><br><span class="line">  ) rethrows -&gt; [T] &#123;</span><br><span class="line">    var result: [T] = []</span><br><span class="line">    for element in self &#123;</span><br><span class="line">      if let newElement = try transform(element) &#123;</span><br><span class="line">        result.append(newElement)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  // ... </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>依然是遍历所有元素，并应用 <code>try transform(element)</code> 闭包的调用， 但关键一点是，这里面用到了 <code>if let</code> 语句， 对那些只有解包成功的元素，才会添加到结果集中:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if let newElement = try transform(element) &#123;</span><br><span class="line">    result.append(newElement)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样， 就实现了我们刚才看到的自动去掉 <code>nil</code> 值的效果了。</p>
+<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a><strong>结尾</strong></h1><p>关于 <code>Swift</code> 中的 <code>map</code> 和 <code>flatMap</code>， 看完这篇内容是不会会对你有所启发呢。 当然， 关于这两个函数我们这里并没有完全讨论完。 它们背后还有着更多的思想。 关于本篇文章的代码，大家还可以来 <code>Github</code> 上面 <a href="https://github.com/swiftcafex/mapAndFlatmap" target="_blank" rel="noopener">参看.</a></p>
+<p>转自：<a href="https://www.swiftcafe.io/2016/03/28/about-map/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">https://www.swiftcafe.io/2016/03/28/about-map/?utm_source=tuicool&amp;utm_medium=referral</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/06/swiftMapAndFlatMap/" data-id="cjg1ulpe2001nxixildmre8l2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flatMap/">flatMap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/map/">map</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/07/swiftOptional/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          swiftOptional
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/31/rainNight/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">雨夜</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-实用/">iOS 实用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-推送/">iOS 推送</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS-网络相关/">iOS 网络相关</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native学习笔记/">react-native学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift学习笔记/">swift学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/8081port/">8081port</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC内存泄漏/">ARC内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crash-Blog/">Crash Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Optional/">Optional</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxSwift/">RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UItableView/">UItableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-listView/">android-listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/closure/">closure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/draw/">draw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flatMap/">flatMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/">hello world</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/index-ios-js/">index.ios.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpush/">jpush</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/listView/">listView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/map/">map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moya-RxSwift/">moya + RxSwift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/onClick/">onClick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rn网络请求/">rn网络请求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地存储/">本地存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本地推送/">本地推送</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书，思考/">读书，思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/8081port/" style="font-size: 10px;">8081port</a> <a href="/tags/ARC内存泄漏/" style="font-size: 10px;">ARC内存泄漏</a> <a href="/tags/Crash-Blog/" style="font-size: 10px;">Crash Blog</a> <a href="/tags/Optional/" style="font-size: 10px;">Optional</a> <a href="/tags/RxSwift/" style="font-size: 10px;">RxSwift</a> <a href="/tags/UItableView/" style="font-size: 10px;">UItableView</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/android-listView/" style="font-size: 10px;">android-listView</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/draw/" style="font-size: 10px;">draw</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/flatMap/" style="font-size: 10px;">flatMap</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/index-ios-js/" style="font-size: 10px;">index.ios.js</a> <a href="/tags/jpush/" style="font-size: 10px;">jpush</a> <a href="/tags/listView/" style="font-size: 10px;">listView</a> <a href="/tags/map/" style="font-size: 10px;">map</a> <a href="/tags/moya-RxSwift/" style="font-size: 10px;">moya + RxSwift</a> <a href="/tags/onClick/" style="font-size: 10px;">onClick</a> <a href="/tags/paint/" style="font-size: 10px;">paint</a> <a href="/tags/rn网络请求/" style="font-size: 10px;">rn网络请求</a> <a href="/tags/swift/" style="font-size: 10px;">swift</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/本地存储/" style="font-size: 10px;">本地存储</a> <a href="/tags/本地推送/" style="font-size: 10px;">本地推送</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/读书，思考/" style="font-size: 10px;">读书，思考</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/08/android-canvas/">Android 之简易涂鸦板</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/05/android-listView/">Android 自定义 item 的 ListView</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/10/android-onClick/">Android 响应按钮点击事件的4种写法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/rn-integration-iosNative/">React Native 集成到iOS原生项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
