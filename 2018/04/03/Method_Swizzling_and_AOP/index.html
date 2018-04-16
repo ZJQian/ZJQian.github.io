@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="ZJQian&#39;s Blogs">
 <meta property="og:description" content="转自: http://tech.glowing.com/cn/method-swizzling-aop/ 上一篇介绍了 Objective-C Messaging。利用 Objective-C 的 Runtime 特性，我们可以给语言做扩展，帮助解决项目开发中的一些设计和技术问题。这一篇，我们来探索一些利用 Objective-C Runtime 的黑色技巧。这些技巧中最具争议的或许就是 Meth">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-16T12:52:26.936Z">
+<meta property="og:updated_time" content="2018-04-16T13:18:53.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Method Swizzling 和 AOP 实践">
 <meta name="twitter:description" content="转自: http://tech.glowing.com/cn/method-swizzling-aop/ 上一篇介绍了 Objective-C Messaging。利用 Objective-C 的 Runtime 特性，我们可以给语言做扩展，帮助解决项目开发中的一些设计和技术问题。这一篇，我们来探索一些利用 Objective-C Runtime 的黑色技巧。这些技巧中最具争议的或许就是 Meth">
@@ -368,6 +368,7 @@
       
         <p>转自: <a href="http://tech.glowing.com/cn/method-swizzling-aop/" target="_blank" rel="noopener">http://tech.glowing.com/cn/method-swizzling-aop/</a></p>
 <p>上一篇介绍了 <a href="http://tech.glowing.com/cn/objective-c-runtime/" target="_blank" rel="noopener">Objective-C Messaging</a>。利用 <code>Objective-C</code> 的 <code>Runtime</code> 特性，我们可以给语言做扩展，帮助解决项目开发中的一些设计和技术问题。这一篇，我们来探索一些利用 <code>Objective-C Runtime</code> 的黑色技巧。这些技巧中最具争议的或许就是 <code>Method Swizzling</code> 。</p>
+<a id="more"></a>
 <p>介绍一个技巧，最好的方式就是提出具体的需求，然后用它跟其他的解决方法做比较。</p>
 <p>所以，先来看看我们的需求：对 <code>App</code> 的用户行为进行追踪和分析。简单说，就是当用户看到某个 <code>View</code> 或者点击某个 <code>Button</code> 的时候，就把这个事件记下来。</p>
 <h2 id="手动添加"><a href="#手动添加" class="headerlink" title="手动添加"></a>手动添加</h2><p>最直接粗暴的方式就是在每个 <code>viewDidAppear</code> 里添加记录事件的代码。</p>
