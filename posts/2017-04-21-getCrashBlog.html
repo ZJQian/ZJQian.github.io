@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="随笔," />
+  <meta name="keywords" content="Crash Blog," />
 
 
 
@@ -83,21 +83,18 @@
 
 
 
-<meta name="description" content="这是一个夜，一个下雨的夜。">
-<meta name="keywords" content="随笔">
+<meta name="description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
+<meta name="keywords" content="Crash Blog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="雨夜">
-<meta property="og:url" content="http://yoursite.com/posts/生活/2017-03-31-rainNight.html">
+<meta property="og:title" content="iOS 获取crash日志">
+<meta property="og:url" content="http://yoursite.com/posts/2017-04-21-getCrashBlog.html">
 <meta property="og:site_name" content="ZJQian&#39;s Blogs">
-<meta property="og:description" content="这是一个夜，一个下雨的夜。">
+<meta property="og:description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2074437-6b28f7f3cf6cb6db.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2074437-245d5be38b96141c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="雨夜">
-<meta name="twitter:description" content="这是一个夜，一个下雨的夜。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2074437-6b28f7f3cf6cb6db.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="iOS 获取crash日志">
+<meta name="twitter:description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
 
 
 
@@ -127,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/posts/生活/2017-03-31-rainNight.html"/>
+  <link rel="canonical" href="http://yoursite.com/posts/2017-04-21-getCrashBlog.html"/>
 
 
 
 
 
-  <title>雨夜 | ZJQian's Blogs</title>
+  <title>iOS 获取crash日志 | ZJQian's Blogs</title>
   
 
 
@@ -270,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/生活/2017-03-31-rainNight.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/2017-04-21-getCrashBlog.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZJQian">
@@ -287,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">雨夜</h1>
+          <h1 class="post-title" itemprop="name headline">iOS 获取crash日志</h1>
         
 
         <div class="post-meta">
@@ -299,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T09:02:16+08:00">
-                2017-03-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-21T10:39:05+08:00">
+                2017-04-21
               </time>
             
 
@@ -322,8 +319,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
+                  <a href="/categories/iOS-实用/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS 实用</span>
                   </a>
                 </span>
 
@@ -340,8 +337,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/生活/2017-03-31-rainNight.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/生活/2017-03-31-rainNight.html" itemprop="commentsCount"></span>
+                <a href="/posts/2017-04-21-getCrashBlog.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/2017-04-21-getCrashBlog.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -369,15 +366,14 @@
       
 
       
-        <p>这是一个夜，一个下雨的夜。<br><a id="more"></a><br><img src="http://upload-images.jianshu.io/upload_images/2074437-6b28f7f3cf6cb6db.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="雨夜"></p>
-<p>我喜欢此时此刻的气氛，一个人窝在被窝里，窗外淅淅沥沥的雨滴敲打着窗户上的玻璃，正应了那句话“大珠小珠落玉盘”。房间里很安静，安静的只能听到自己的呼吸声，窗外时不时的传来一声汽车呼啸而过的声音。这种环境，这种氛围，让我觉得很舒服，恰到好处。</p>
-<p>一个人在这种环境下，思想会变得格外的清晰和明朗，会想明白很多一直想不明白的问题。于我自己而言，喜欢黑夜甚于白天。尤其是这样的一个静谧的夜。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2074437-245d5be38b96141c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="静谧的夜"></p>
-<p>上海的生活节奏快的可怕，初来乍到之时，手忙脚乱，慌不择路。慢慢的习惯了这种生活，喜欢在一片喧嚣之中觅得一方清幽之所，独处，享受。</p>
-<p>一个人生活，有好处，也有坏处。好处就是可以经常反思自己，可以依靠自己来约束自己。坏处就是缺少与人交流，没有交流，进步就会异常缓慢。就现在来说，我还挺满意自己如今的生活状态，虽说朝九晚五，但也是异常充实，知道每天需要做些什么来填补自己。年龄在一天天的增长，我要做的就是让经历，经验，学识都要与之增长。</p>
-<p>本来说好了，这不是一篇鸡汤文，但写着写着，总想写一些话来安慰或鼓励自己一下。学而不思则罔，思而不学则殆。快节奏的生活中，会思考显得弥足珍贵。我们不要只顾风雨兼程，还要时不时的停下来，审视自己。以人为镜，正己。</p>
-<p>夜，是思绪放飞的时刻。会想到一些人，会想到一些事。想昨天，想明天。想一切能想到的。思想的触角漫无边际，任其四通八达，通向未来。</p>
-<p>窗外的雨还在淅淅沥沥的下着，夜已深。</p>
+        <p>在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。</p>
+<a id="more"></a>
+<p>这里我用了一种方法，就是当应用在用户使用时发生崩溃现象，会获取到崩溃的日志，然后调起邮箱让用户通过邮件发送给我们。</p>
+<p>具体代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - 获取异常日志</span><br><span class="line"></span><br><span class="line">- (void)installUncaughtExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    NSSetUncaughtExceptionHandler(&amp;UncaughtExceptionHandler);</span><br><span class="line">&#125;</span><br><span class="line">void UncaughtExceptionHandler(NSException *exception) &#123;</span><br><span class="line"></span><br><span class="line">    NSArray *arr = [exception callStackSymbols];</span><br><span class="line">    NSString *reason = [exception reason];</span><br><span class="line">    NSString *name = [exception name];</span><br><span class="line">    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@&quot;CFBundleVersion&quot;];</span><br><span class="line">    NSString *urlStr = [NSString stringWithFormat:@&quot;mailto://developer@qq.com?subject=Crash报告&amp;body=您的建议会让我们做的更好，感谢您的配合！&lt;br&gt;&lt;br&gt;&lt;br&gt;&quot;&quot;错误详情(%@):&lt;br&gt;%@&lt;br&gt;-----------------------&lt;br&gt;%@&lt;br&gt;---------------------&lt;br&gt;%@&quot;,currentVersion,name,reason,[arr componentsJoinedByString:@&quot;&lt;br&gt;&quot;]];</span><br><span class="line">    NSURL *url = [NSURL URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];</span><br><span class="line">    [[UIApplication sharedApplication]openURL:url];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在<code>AppDelegate</code>里的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions&#123;</span><br><span class="line"></span><br><span class="line">//获取异常报告</span><br><span class="line">    [self installUncaughtExceptionHandler];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法中调用就可以了。</p>
 
       
     </div>
@@ -395,7 +391,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/随笔/" rel="tag"># 随笔</a>
+            <a href="/tags/Crash-Blog/" rel="tag"># Crash Blog</a>
           
         </div>
       
@@ -408,8 +404,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/iOS-推送/2017-03-30-jpush.html" rel="next" title="极光推送开发环境可以收到,生产环境收不到推送">
-                <i class="fa fa-chevron-left"></i> 极光推送开发环境可以收到,生产环境收不到推送
+              <a href="/posts/2017-04-18-ARCMemoryLeak.html" rel="next" title="ARC下的内存泄漏">
+                <i class="fa fa-chevron-left"></i> ARC下的内存泄漏
               </a>
             
           </div>
@@ -418,8 +414,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/swift学习笔记/2017-04-06-swiftMapAndFlatMap.html" rel="prev" title="谈谈 Swift 中的 map 和 flatMap">
-                谈谈 Swift 中的 map 和 flatMap <i class="fa fa-chevron-right"></i>
+              <a href="/posts/2017-04-27-react-native-fetch.html" rel="prev" title="React-Native Fetch网络请求">
+                React-Native Fetch网络请求 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

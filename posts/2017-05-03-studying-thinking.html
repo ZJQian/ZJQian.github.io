@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Crash Blog," />
+  <meta name="keywords" content="读书，思考," />
 
 
 
@@ -83,18 +83,21 @@
 
 
 
-<meta name="description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
-<meta name="keywords" content="Crash Blog">
+<meta name="description" content="越来越感觉脑子不够用了。最近在学习一些新的东西，也许是自己的基础不扎实，导致学起来很乱，没有侧重点，完完全全就是一团乱麻。常常是刚刚想出来一个解决办法，继续往下写的时候，突然发现之前的方法不太好，然后就推翻重来，如此循环往复，没有看到一点显著的成果，才让我心生焦虑。">
+<meta name="keywords" content="读书，思考">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS 获取crash日志">
-<meta property="og:url" content="http://yoursite.com/posts/iOS-实用/2017-04-21-getCrashBlog.html">
+<meta property="og:title" content="不思考，不读书">
+<meta property="og:url" content="http://yoursite.com/posts/2017-05-03-studying-thinking.html">
 <meta property="og:site_name" content="ZJQian&#39;s Blogs">
-<meta property="og:description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
+<meta property="og:description" content="越来越感觉脑子不够用了。最近在学习一些新的东西，也许是自己的基础不扎实，导致学起来很乱，没有侧重点，完完全全就是一团乱麻。常常是刚刚想出来一个解决办法，继续往下写的时候，突然发现之前的方法不太好，然后就推翻重来，如此循环往复，没有看到一点显著的成果，才让我心生焦虑。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493786655792&di=f05339bf58c9f91345d8bffe016d8df4&imgtype=0&src=http%3A%2F%2Fimg.zjknews.com%2Ffile%2F201703%2F27%2F58d7b03c64fa6d87f68bbdaf3cc2e80c.jpg%3FimageView2%2F2%2Fw%2F600">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493786793295&di=20f4de82a6affac573be5e75e9e0d51a&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160427%2Fa6850906863b46eb8cb519723b97fc21.jpg">
+<meta property="og:updated_time" content="2018-04-16T07:56:07.611Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS 获取crash日志">
-<meta name="twitter:description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
+<meta name="twitter:title" content="不思考，不读书">
+<meta name="twitter:description" content="越来越感觉脑子不够用了。最近在学习一些新的东西，也许是自己的基础不扎实，导致学起来很乱，没有侧重点，完完全全就是一团乱麻。常常是刚刚想出来一个解决办法，继续往下写的时候，突然发现之前的方法不太好，然后就推翻重来，如此循环往复，没有看到一点显著的成果，才让我心生焦虑。">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493786655792&di=f05339bf58c9f91345d8bffe016d8df4&imgtype=0&src=http%3A%2F%2Fimg.zjknews.com%2Ffile%2F201703%2F27%2F58d7b03c64fa6d87f68bbdaf3cc2e80c.jpg%3FimageView2%2F2%2Fw%2F600">
 
 
 
@@ -124,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/posts/iOS-实用/2017-04-21-getCrashBlog.html"/>
+  <link rel="canonical" href="http://yoursite.com/posts/2017-05-03-studying-thinking.html"/>
 
 
 
 
 
-  <title>iOS 获取crash日志 | ZJQian's Blogs</title>
+  <title>不思考，不读书 | ZJQian's Blogs</title>
   
 
 
@@ -267,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/iOS-实用/2017-04-21-getCrashBlog.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/2017-05-03-studying-thinking.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZJQian">
@@ -284,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS 获取crash日志</h1>
+          <h1 class="post-title" itemprop="name headline">不思考，不读书</h1>
         
 
         <div class="post-meta">
@@ -296,8 +299,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-21T10:39:05+08:00">
-                2017-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T10:01:06+08:00">
+                2017-05-03
               </time>
             
 
@@ -319,8 +322,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS-实用/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS 实用</span>
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
                   </a>
                 </span>
 
@@ -337,8 +340,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/iOS-实用/2017-04-21-getCrashBlog.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/iOS-实用/2017-04-21-getCrashBlog.html" itemprop="commentsCount"></span>
+                <a href="/posts/2017-05-03-studying-thinking.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/posts/2017-05-03-studying-thinking.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -366,14 +369,13 @@
       
 
       
-        <p>在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。</p>
+        <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493786655792&amp;di=f05339bf58c9f91345d8bffe016d8df4&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.zjknews.com%2Ffile%2F201703%2F27%2F58d7b03c64fa6d87f68bbdaf3cc2e80c.jpg%3FimageView2%2F2%2Fw%2F600" alt="读书"></p>
+<p>越来越感觉脑子不够用了。最近在学习一些新的东西，也许是自己的基础不扎实，导致学起来很乱，没有侧重点，完完全全就是一团乱麻。常常是刚刚想出来一个解决办法，继续往下写的时候，突然发现之前的方法不太好，然后就推翻重来，如此循环往复，没有看到一点显著的成果，才让我心生焦虑。</p>
 <a id="more"></a>
-<p>这里我用了一种方法，就是当应用在用户使用时发生崩溃现象，会获取到崩溃的日志，然后调起邮箱让用户通过邮件发送给我们。</p>
-<p>具体代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - 获取异常日志</span><br><span class="line"></span><br><span class="line">- (void)installUncaughtExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    NSSetUncaughtExceptionHandler(&amp;UncaughtExceptionHandler);</span><br><span class="line">&#125;</span><br><span class="line">void UncaughtExceptionHandler(NSException *exception) &#123;</span><br><span class="line"></span><br><span class="line">    NSArray *arr = [exception callStackSymbols];</span><br><span class="line">    NSString *reason = [exception reason];</span><br><span class="line">    NSString *name = [exception name];</span><br><span class="line">    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@&quot;CFBundleVersion&quot;];</span><br><span class="line">    NSString *urlStr = [NSString stringWithFormat:@&quot;mailto://developer@qq.com?subject=Crash报告&amp;body=您的建议会让我们做的更好，感谢您的配合！&lt;br&gt;&lt;br&gt;&lt;br&gt;&quot;&quot;错误详情(%@):&lt;br&gt;%@&lt;br&gt;-----------------------&lt;br&gt;%@&lt;br&gt;---------------------&lt;br&gt;%@&quot;,currentVersion,name,reason,[arr componentsJoinedByString:@&quot;&lt;br&gt;&quot;]];</span><br><span class="line">    NSURL *url = [NSURL URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];</span><br><span class="line">    [[UIApplication sharedApplication]openURL:url];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后在<code>AppDelegate</code>里的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions&#123;</span><br><span class="line"></span><br><span class="line">//获取异常报告</span><br><span class="line">    [self installUncaughtExceptionHandler];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>方法中调用就可以了。</p>
+<p>最近还有一件事情使我非常苦恼，其实也算不上苦恼，归根结底的原因就是因为自己贪玩。是这样的，现在《王者荣耀》这款手游简直是火的不得了，我也未能免受其害。可游戏这东西，玩多了真的会上瘾，所以最近花在游戏上的时间有点多。一方面慨叹于光阴的易逝，而另一方面还在召唤师峡谷里忘情厮杀。之前卸载过几次，狠话也说了很多，可就是控制不住自己。思来想去，自己就是太爱玩了，也太没有自制力了。最近想到一个办法，就是用读书来转移玩游戏的注意力。暂时还不知道管不管用，以后除了工作，要尽可能的摆脱对手机的依赖，多去读书，多去思考，多出去走走。</p>
+<p>之前看过一个节目，里面有人讲到“读书永不毕业”，我觉得说的挺对的。中国不也有句老话叫“活到老，学到老”吗？就我自己来讲，学习可以使我觉得我的大脑还可以思想，还在运转，再说大一点，就是还能感觉到自己活着。倘若让我每天重复的，机械的做一些事情，而没有时间去思考，我肯定会受不了。有时候仔细想想，万一真的有一天，自己的大脑停止思想了，真的是挺可怕的一件事。之所以长个脑子，不就是用来思考的吗？学习，思考，真的是一生都需要做的一件事。</p>
+<p>年轻的大好光阴，不用来学习，很可惜，不是吗？</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493786793295&amp;di=20f4de82a6affac573be5e75e9e0d51a&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160427%2Fa6850906863b46eb8cb519723b97fc21.jpg" alt="不思考，不读书"></p>
 
       
     </div>
@@ -391,7 +393,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Crash-Blog/" rel="tag"># Crash Blog</a>
+            <a href="/tags/读书，思考/" rel="tag"># 读书，思考</a>
           
         </div>
       
@@ -404,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/iOS-实用/2017-04-18-ARCMemoryLeak.html" rel="next" title="ARC下的内存泄漏">
-                <i class="fa fa-chevron-left"></i> ARC下的内存泄漏
+              <a href="/posts/2017-04-27-react-native-fetch.html" rel="next" title="React-Native Fetch网络请求">
+                <i class="fa fa-chevron-left"></i> React-Native Fetch网络请求
               </a>
             
           </div>
@@ -414,8 +416,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/react-native学习笔记/2017-04-27-react-native-fetch.html" rel="prev" title="React-Native Fetch网络请求">
-                React-Native Fetch网络请求 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/2017-05-03-rn-integration-iosNative.html" rel="prev" title="React Native 集成到iOS原生项目">
+                React Native 集成到iOS原生项目 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
