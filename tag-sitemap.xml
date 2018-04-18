@@ -2,7 +2,7 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://yoursite.com/tags/ARC%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</loc>
+        <loc>http://yoursite.com/tags/WiFi/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -16,7 +16,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/WiFi/</loc>
+        <loc>http://yoursite.com/tags/ARC%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -24,13 +24,6 @@
 
     <url>
         <loc>http://yoursite.com/tags/onClick/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/index-ios-js/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -72,14 +65,14 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/moya-RxSwift/</loc>
+        <loc>http://yoursite.com/tags/%E6%9C%AC%E5%9C%B0%E6%8E%A8%E9%80%81/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/%E6%9C%AC%E5%9C%B0%E6%8E%A8%E9%80%81/</loc>
+        <loc>http://yoursite.com/tags/moya-RxSwift/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -136,6 +129,13 @@
 
     <url>
         <loc>http://yoursite.com/tags/%E6%97%85%E6%B8%B8/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/index-ios-js/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
