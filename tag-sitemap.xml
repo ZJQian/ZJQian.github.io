@@ -16,13 +16,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/RxSwift/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/onClick/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -51,14 +44,14 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/UItableView/</loc>
+        <loc>http://yoursite.com/tags/hello-world/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/hello-world/</loc>
+        <loc>http://yoursite.com/tags/UItableView/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -79,14 +72,14 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/moya-RxSwift/</loc>
+        <loc>http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/</loc>
+        <loc>http://yoursite.com/tags/moya-RxSwift/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -121,13 +114,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/closure/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/%E7%94%9F%E6%B4%BB/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -136,6 +122,20 @@
 
     <url>
         <loc>http://yoursite.com/tags/%E6%97%85%E6%B8%B8/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/closure/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/RxSwift/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
