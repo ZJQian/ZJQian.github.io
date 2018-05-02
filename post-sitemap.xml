@@ -79,6 +79,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2017/03/13/RxSwift/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2017/05/10/android-onClick/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -111,7 +119,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/06/07/hello-world/</loc>
+        <loc>http://yoursite.com/2017/04/13/handleUITableView/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -119,7 +127,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/04/13/handleUITableView/</loc>
+        <loc>http://yoursite.com/2017/06/07/hello-world/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -143,7 +151,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/03/31/rainNight/</loc>
+        <loc>http://yoursite.com/2017/03/13/moya/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -151,7 +159,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/03/13/moya/</loc>
+        <loc>http://yoursite.com/2017/03/31/rainNight/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -191,14 +199,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/04/16/visitJinShanCityBeach/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://yoursite.com/2017/03/08/swift-closure/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -207,7 +207,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/03/13/RxSwift/</loc>
+        <loc>http://yoursite.com/2017/04/16/visitJinShanCityBeach/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
