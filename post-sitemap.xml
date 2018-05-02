@@ -103,7 +103,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/04/13/fileOperations/</loc>
+        <loc>http://yoursite.com/2017/04/21/getCrashBlog/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -111,7 +111,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/04/21/getCrashBlog/</loc>
+        <loc>http://yoursite.com/2017/04/13/fileOperations/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -151,14 +151,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/03/13/moya/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://yoursite.com/2017/03/31/rainNight/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -167,7 +159,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/04/27/react-native-fetch/</loc>
+        <loc>http://yoursite.com/2017/03/13/moya/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -176,6 +168,14 @@
 
     <url>
         <loc>http://yoursite.com/2017/03/22/react-native-listView/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2017/04/27/react-native-fetch/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
