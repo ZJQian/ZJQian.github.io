@@ -9,20 +9,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/RxSwift/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/WiFi/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/onClick/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -72,13 +58,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/%E6%9C%AC%E5%9C%B0%E6%8E%A8%E9%80%81/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -86,14 +65,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/moya-RxSwift/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/listView/</loc>
+        <loc>http://yoursite.com/tags/%E6%9C%AC%E5%9C%B0%E6%8E%A8%E9%80%81/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -114,7 +86,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/8081port/</loc>
+        <loc>http://yoursite.com/tags/listView/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -122,6 +94,13 @@
 
     <url>
         <loc>http://yoursite.com/tags/closure/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/8081port/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -142,64 +121,85 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/tags/WiFi/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/moya-RxSwift/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/RxSwift/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://yoursite.com/tags/canvas/</loc>
-        <lastmod>2018-04-16T07:54:57.293Z</lastmod>
+        <lastmod>2018-04-16T07:54:57.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/paint/</loc>
-        <lastmod>2018-04-16T07:54:57.293Z</lastmod>
+        <lastmod>2018-04-16T07:54:57.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/draw/</loc>
-        <lastmod>2018-04-16T07:54:57.293Z</lastmod>
+        <lastmod>2018-04-16T07:54:57.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/android-listView/</loc>
-        <lastmod>2018-04-16T07:55:18.898Z</lastmod>
+        <lastmod>2018-04-16T07:55:18.899Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/%E8%AF%BB%E4%B9%A6%EF%BC%8C%E6%80%9D%E8%80%83/</loc>
-        <lastmod>2018-04-16T07:56:07.611Z</lastmod>
+        <lastmod>2018-04-16T07:56:07.612Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/swift/</loc>
-        <lastmod>2018-04-16T07:56:55.115Z</lastmod>
+        <lastmod>2018-04-16T07:56:55.116Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/Optional/</loc>
-        <lastmod>2018-04-16T07:56:55.115Z</lastmod>
+        <lastmod>2018-04-16T07:56:55.116Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/map/</loc>
-        <lastmod>2018-04-16T07:57:21.587Z</lastmod>
+        <lastmod>2018-04-16T07:57:21.588Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/flatMap/</loc>
-        <lastmod>2018-04-16T07:57:21.587Z</lastmod>
+        <lastmod>2018-04-16T07:57:21.588Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -213,14 +213,14 @@
 
     <url>
         <loc>http://yoursite.com/tags/navigator/</loc>
-        <lastmod>2018-04-16T13:19:20.868Z</lastmod>
+        <lastmod>2018-04-16T13:19:20.869Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/tabNavigator/</loc>
-        <lastmod>2018-04-16T13:19:20.868Z</lastmod>
+        <lastmod>2018-04-16T13:19:20.869Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

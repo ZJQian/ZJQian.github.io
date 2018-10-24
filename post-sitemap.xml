@@ -8,7 +8,7 @@
 
     <url>
         <loc>http://yoursite.com/2018/04/12/react-navigation-detail/</loc>
-        <lastmod>2018-04-16T13:19:20.868Z</lastmod>
+        <lastmod>2018-04-16T13:19:20.869Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -24,7 +24,7 @@
 
     <url>
         <loc>http://yoursite.com/2017/04/06/swiftMapAndFlatMap/</loc>
-        <lastmod>2018-04-16T07:57:21.587Z</lastmod>
+        <lastmod>2018-04-16T07:57:21.588Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -32,7 +32,7 @@
 
     <url>
         <loc>http://yoursite.com/2017/04/07/swiftOptional/</loc>
-        <lastmod>2018-04-16T07:56:55.115Z</lastmod>
+        <lastmod>2018-04-16T07:56:55.116Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -40,7 +40,7 @@
 
     <url>
         <loc>http://yoursite.com/2017/05/03/studying-thinking/</loc>
-        <lastmod>2018-04-16T07:56:07.611Z</lastmod>
+        <lastmod>2018-04-16T07:56:07.612Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -48,7 +48,7 @@
 
     <url>
         <loc>http://yoursite.com/2017/06/05/android-listView/</loc>
-        <lastmod>2018-04-16T07:55:18.898Z</lastmod>
+        <lastmod>2018-04-16T07:55:18.899Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -56,7 +56,7 @@
 
     <url>
         <loc>http://yoursite.com/2017/06/08/android-canvas/</loc>
-        <lastmod>2018-04-16T07:54:57.293Z</lastmod>
+        <lastmod>2018-04-16T07:54:57.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -64,22 +64,6 @@
 
     <url>
         <loc>http://yoursite.com/2017/04/18/ARCMemoryLeak/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2017/03/13/RxSwift/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2017/03/08/WiFi/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -143,14 +127,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/04/14/localNotification/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://yoursite.com/2017/03/31/rainNight/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -159,15 +135,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/03/13/moya/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2017/03/22/react-native-listView/</loc>
+        <loc>http://yoursite.com/2017/04/14/localNotification/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -183,15 +151,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/05/03/rn-integration-iosNative/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2017/03/22/rnPortCrash/</loc>
+        <loc>http://yoursite.com/2017/03/22/react-native-listView/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -207,7 +167,47 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2017/03/22/rnPortCrash/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2017/04/16/visitJinShanCityBeach/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2017/03/08/WiFi/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2017/03/13/moya/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2017/05/03/rn-integration-iosNative/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2017/03/13/RxSwift/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
