@@ -8,7 +8,7 @@
 
     <url>
         <loc>http://yoursite.com/2018/04/12/react-navigation-detail/</loc>
-        <lastmod>2018-04-16T13:19:20.869Z</lastmod>
+        <lastmod>2018-10-26T11:36:28.869Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -63,14 +63,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/05/10/android-onClick/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://yoursite.com/2017/04/18/ARCMemoryLeak/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -79,31 +71,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/03/22/explainIndexiosjs/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2017/04/13/fileOperations/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2017/04/21/getCrashBlog/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2017/06/07/hello-world/</loc>
+        <loc>http://yoursite.com/2017/05/10/android-onClick/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -119,7 +87,23 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2017/04/13/fileOperations/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2017/03/30/jpush/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2017/06/07/hello-world/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -200,6 +184,22 @@
 
     <url>
         <loc>http://yoursite.com/2017/05/03/rn-integration-iosNative/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2017/04/21/getCrashBlog/</loc>
+        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2017/03/22/explainIndexiosjs/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
