@@ -94,7 +94,7 @@
 <meta property="og:description" content="已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20170418105339918?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta property="og:updated_time" content="2018-10-27T03:31:09.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARC下的内存泄漏">
 <meta name="twitter:description" content="已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。">
@@ -428,11 +428,11 @@
       
         <p>已习惯于arc帮我们管理内存的我们，写起代码来，比MRC似乎肆意妄为了许多，总有些有恃无恐的感觉，其实arc下面还是很容易引起内存溢出的。<br><a id="more"></a></p>
 <p>ARC 是帮助我们做对象内存管理的一套机制，使得我们以前在 MRC 模式下管理内存工作量能在 ARC 模式下得到缓解。正如苹果官方文档上所描述的：<br>Automatic Reference Counting (ARC) is a compiler feature that provides automatic memory management of Objective-C objects.<br>可见 ARC 是编译时特性，它没有改变 Objective-C 引用计数式内存管理的本质，更不是 GC（垃圾回收）。<br>也就是说只要我们稍不注意，隐式的持有或复制对象就会造成内存泄露。</p>
-<h1 id="NSNotificationcenter"><a href="#NSNotificationcenter" class="headerlink" title="NSNotificationcenter"></a><strong>NSNotificationcenter</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(method:) name:@&quot;notiName&quot; object:nil];</span><br></pre></td></tr></table></figure>
+<h1 id="NSNotificationcenter"><a href="#NSNotificationcenter" class="headerlink" title="NSNotificationcenter"></a><strong>NSNotificationcenter</strong></h1><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter]addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(method:) name:<span class="string">@"notiName"</span> object:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
 <p>这里添加观察者其实是不会造成内存泄漏的，但是，但是，但是……如果self被销毁，当在调用post消息的时候，就会报对象被释放的错误，导致闪退，所以在添加观察者的对象，一定要在它被销毁的时候从消息中心删除！</p>
 <p>就是在注册通知的地方加上这个：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)dealloc &#123;</span><br><span class="line"></span><br><span class="line">    [[NSNotificationCenter defaultCenter]removeObserver:self];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="NSTimer"><a href="#NSTimer" class="headerlink" title="NSTimer"></a><strong>NSTimer</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(method:) userInfo:nil repeats:YES];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line"></span><br><span class="line">    [[<span class="built_in">NSNotificationCenter</span> defaultCenter]removeObserver:<span class="keyword">self</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="NSTimer"><a href="#NSTimer" class="headerlink" title="NSTimer"></a><strong>NSTimer</strong></h1><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(method:) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
 <p>上面的timer为了防止 target 被释放而导致的程序异常，timer 会持有 target， self 持有 timer，timer 在初始化时持有 self，造成循环引用。解决的方法就是使用 <code>invalidate</code> 方法销掉 timer。</p>
 <h1 id="delegate属性的强引用"><a href="#delegate属性的强引用" class="headerlink" title="delegate属性的强引用"></a><strong>delegate属性的强引用</strong></h1><p>把<code>delegate</code>声明为<code>strong</code>属性容易导致内存溢出 。</p>
 <p>解决办法是把<code>delegate</code>属性的<code>strong</code>改为<code>assign</code>或者<code>weak</code>即可。</p>
@@ -446,9 +446,9 @@
 <li>当用<code>strong</code>修饰的时候，该对象强引用<code>delegate</code>，外界不能销毁<code>delegate</code>对象，会导致循环引用(<code>Retain Cycles</code>)。</li>
 </ul>
 </blockquote>
-<h1 id="WKWebView"><a href="#WKWebView" class="headerlink" title="WKWebView"></a><strong>WKWebView</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_webView.configuration.userContentController addScriptMessageHandler:self name:clickName];</span><br></pre></td></tr></table></figure>
+<h1 id="WKWebView"><a href="#WKWebView" class="headerlink" title="WKWebView"></a><strong>WKWebView</strong></h1><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_webView.configuration.userContentController addScriptMessageHandler:<span class="keyword">self</span> name:clickName];</span><br></pre></td></tr></table></figure>
 <p>添加addScriptMessageHandler之后，必须在vc销毁前把它移除。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_webView.configuration.userContentController removeScriptMessageHandlerForName:clickName];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_webView.configuration.userContentController removeScriptMessageHandlerForName:clickName];</span><br></pre></td></tr></table></figure>
 <p>和<code>NSNotification</code> 很类似。</p>
 <h1 id="Block"><a href="#Block" class="headerlink" title="Block"></a><strong>Block</strong></h1><p><img src="http://img.blog.csdn.net/20170418105339918?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGhyZWVfWmhhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>上面图片中就是一典型案例，红色部分就是修改之前导致内存溢出的代码，我们来分析一下： </p>
@@ -646,7 +646,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -657,7 +657,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -668,7 +668,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

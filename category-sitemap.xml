@@ -7,34 +7,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/categories/iOS-%E5%AE%9E%E7%94%A8/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/categories/iOS-%E6%8E%A8%E9%80%81/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/categories/iOS-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/</loc>
-        <lastmod>2017-06-07T13:00:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/categories/Android/</loc>
-        <lastmod>2018-04-16T07:55:18.899Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/</loc>
         <lastmod>2018-04-16T07:56:07.612Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -42,22 +14,71 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/categories/iOS-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/</loc>
+        <lastmod>2018-10-27T02:48:29.487Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://yoursite.com/categories/swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-        <lastmod>2018-04-16T07:57:21.588Z</lastmod>
+        <lastmod>2018-10-27T03:24:58.990Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/categories/iOS-%E6%8E%A8%E9%80%81/</loc>
+        <lastmod>2018-10-27T03:26:12.241Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/categories/iOS-%E5%AE%9E%E7%94%A8/</loc>
+        <lastmod>2018-10-27T03:31:09.248Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/categories/Android/</loc>
+        <lastmod>2018-10-27T03:33:04.928Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/categories/iOS-%E4%B9%8B-runtime/</loc>
-        <lastmod>2018-04-16T13:18:53.313Z</lastmod>
+        <lastmod>2018-10-27T03:35:32.716Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/categories/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+        <lastmod>2018-10-27T03:35:52.799Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/categories/react-native%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-        <lastmod>2018-10-26T11:36:28.869Z</lastmod>
+        <lastmod>2018-10-27T03:36:11.351Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/categories/git/</loc>
+        <lastmod>2018-10-27T03:36:20.757Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/categories/%E5%AE%9E%E7%94%A8/</loc>
+        <lastmod>2018-10-27T03:36:25.121Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

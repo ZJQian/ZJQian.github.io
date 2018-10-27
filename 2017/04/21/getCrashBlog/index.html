@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="ZJQian&#39;s Blogs">
 <meta property="og:description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta property="og:updated_time" content="2018-10-27T03:27:11.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 获取crash日志">
 <meta name="twitter:description" content="在项目上架到App Store以后，谁也不能保证没有一个错误，可能在测试期间连测试人员都没有发现的隐藏小bug在上线之后被用户发现了，这就无疑给用户造成了困扰。所以作为开发人员，要及时的收集这些crash日志信息，然后修复这些问题。">
@@ -428,9 +428,9 @@
 <a id="more"></a>
 <p>这里我用了一种方法，就是当应用在用户使用时发生崩溃现象，会获取到崩溃的日志，然后调起邮箱让用户通过邮件发送给我们。</p>
 <p>具体代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - 获取异常日志</span><br><span class="line"></span><br><span class="line">- (void)installUncaughtExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    NSSetUncaughtExceptionHandler(&amp;UncaughtExceptionHandler);</span><br><span class="line">&#125;</span><br><span class="line">void UncaughtExceptionHandler(NSException *exception) &#123;</span><br><span class="line"></span><br><span class="line">    NSArray *arr = [exception callStackSymbols];</span><br><span class="line">    NSString *reason = [exception reason];</span><br><span class="line">    NSString *name = [exception name];</span><br><span class="line">    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@&quot;CFBundleVersion&quot;];</span><br><span class="line">    NSString *urlStr = [NSString stringWithFormat:@&quot;mailto://developer@qq.com?subject=Crash报告&amp;body=您的建议会让我们做的更好，感谢您的配合！&lt;br&gt;&lt;br&gt;&lt;br&gt;&quot;&quot;错误详情(%@):&lt;br&gt;%@&lt;br&gt;-----------------------&lt;br&gt;%@&lt;br&gt;---------------------&lt;br&gt;%@&quot;,currentVersion,name,reason,[arr componentsJoinedByString:@&quot;&lt;br&gt;&quot;]];</span><br><span class="line">    NSURL *url = [NSURL URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];</span><br><span class="line">    [[UIApplication sharedApplication]openURL:url];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 获取异常日志</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)installUncaughtExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSSetUncaughtExceptionHandler</span>(&amp;UncaughtExceptionHandler);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> UncaughtExceptionHandler(<span class="built_in">NSException</span> *exception) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSArray</span> *arr = [exception callStackSymbols];</span><br><span class="line">    <span class="built_in">NSString</span> *reason = [exception reason];</span><br><span class="line">    <span class="built_in">NSString</span> *name = [exception name];</span><br><span class="line">    <span class="built_in">NSString</span> *currentVersion = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleVersion"</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *urlStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"mailto://developer@qq.com?subject=Crash报告&amp;body=您的建议会让我们做的更好，感谢您的配合！&lt;br&gt;&lt;br&gt;&lt;br&gt;"</span><span class="string">"错误详情(%@):&lt;br&gt;%@&lt;br&gt;-----------------------&lt;br&gt;%@&lt;br&gt;---------------------&lt;br&gt;%@"</span>,currentVersion,name,reason,[arr componentsJoinedByString:<span class="string">@"&lt;br&gt;"</span>]];</span><br><span class="line">    <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>]];</span><br><span class="line">    [[<span class="built_in">UIApplication</span> sharedApplication]openURL:url];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后在<code>AppDelegate</code>里的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions&#123;</span><br><span class="line"></span><br><span class="line">//获取异常报告</span><br><span class="line">    [self installUncaughtExceptionHandler];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取异常报告</span></span><br><span class="line">    [<span class="keyword">self</span> installUncaughtExceptionHandler];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>方法中调用就可以了。</p>
 
       
@@ -613,7 +613,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -624,7 +624,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -635,7 +635,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

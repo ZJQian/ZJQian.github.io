@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3902605-9f2192a8e364ecc9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3902605-313a8945d475fa99.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3902605-1f8d59529c776d8d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-06-07T13:00:30.000Z">
+<meta property="og:updated_time" content="2018-10-27T03:26:12.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="极光推送开发环境可以收到,生产环境收不到推送">
 <meta name="twitter:description" content="首先阐述一下我遇到的问题： 我们项目连通了极光推送，以前写过的项目也是这样，在开发环境下测试，好使了，但是打包ADHoc时候，就不好使了，">
@@ -452,11 +452,11 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/3902605-9f2192a8e364ecc9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="代码"></p>
 <p><strong>Ps：这里强烈建议这么写，安全第一 安全第一！！！</strong></p>
 <p>　　这里附上代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];</span><br><span class="line"></span><br><span class="line">[defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidLoginNotification object:nil];</span><br><span class="line"></span><br><span class="line">[JPUSHService registerDeviceToken:deviceToken];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didRegisterForRemoteNotificationsWithDeviceToken:(<span class="built_in">NSData</span> *)deviceToken</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSNotificationCenter</span> *defaultCenter = [<span class="built_in">NSNotificationCenter</span> defaultCenter];</span><br><span class="line"></span><br><span class="line">[defaultCenter addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(networkDidReceiveMessage:) name:kJPFNetworkDidLoginNotification object:<span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line">[JPUSHService registerDeviceToken:deviceToken];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>//通知方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)networkDidReceiveMessage:(NSNotification *)notification &#123;</span><br><span class="line"></span><br><span class="line">[JPUSHService setTags:nil aliasInbackground:[OpenUDID value]];</span><br><span class="line"></span><br><span class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line"></span><br><span class="line">[JPUSHService setTags:nil alias:[OpenUDID value] fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)networkDidReceiveMessage:(<span class="built_in">NSNotification</span> *)notification &#123;</span><br><span class="line"></span><br><span class="line">[JPUSHService setTags:<span class="literal">nil</span> aliasInbackground:[OpenUDID value]];</span><br><span class="line"></span><br><span class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">1.0</span>f * <span class="built_in">NSEC_PER_SEC</span>)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line"></span><br><span class="line">[JPUSHService setTags:<span class="literal">nil</span> alias:[OpenUDID value] fetchCompletionHandle:^(<span class="keyword">int</span> iResCode, <span class="built_in">NSSet</span> *iTags, <span class="built_in">NSString</span> *iAlias)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>//销毁通知：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[NSNotificationCenter defaultCenter] removeObserver:self name:kJPFNetworkDidLoginNotification object:nil];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] removeObserver:<span class="keyword">self</span> name:kJPFNetworkDidLoginNotification object:<span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>　　然而，问题依旧没有解决，但是这个时候，我们登录极光官网推送。我在生产环境，再次发送，广播，别名，regID，结果，都收到了！！正当我高兴的时候，发现 api推送依旧收不到！！收不到！！绝望！！</p>
 <p>　　继续排查！！！按照开发文档，设置xcode配置，嗯 ，依旧没用。</p>
 <p>　　这里我重点说一下 ：iOS9 之后 卸载重装后会改变token，所以registrationID会改变，如果你没有用到idfa。如果你的项目使用的是regID推送，那么你要注意，每次更新app，新用户下载app，重新下载app等一系列状况下，regID改变的问题。还有如果注册成功后，会返回，设置成功，有callback为0。这个也要注意下。</p>
@@ -467,7 +467,7 @@
 <p>　　大家看没看到，这里写的是推送平台iOS-dev？卧槽！！后台给我推送的居然是开发环境！！果断找后台理论！！！</p>
 <p>　　Lris大神告诉我：「发布版本后无法有效推送」 or 「生产环境下收不到消息」 按以下步骤排查问题： 客户端－－－－＞客户端是否打包证书－－－－＞检查当前环境是否正确－－－－－＞设备里面的手机应用有没有添加/配置这个tag/ 别名－－－＞服务端注意改变环境参数，option的apns_production的值（true：生产）（false开发）。根据客户端环境改变服务端推送环境。环境要一致才能收到推送。</p>
 <p>　　然后我们后台给我发送了一段代码 堵住了我的嘴：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$platform = &apos;android,ios&apos; ;</span><br><span class="line"></span><br><span class="line">$msg_content = json_encode(array(&apos;n_builder_id&apos;=&gt;0, &apos;n_title&apos;=&gt;$n_title, &apos;n_content&apos;=&gt;$n_content,&apos;content-available&apos;=&gt;1,&apos;apns_production&apos;=&gt;1));</span><br><span class="line"></span><br><span class="line">$obj = new jpush($masterSecret,$appkeys);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$platform = <span class="string">'android,ios'</span> ;</span><br><span class="line"></span><br><span class="line">$msg_content = json_encode(array(<span class="string">'n_builder_id'</span>=&gt;<span class="number">0</span>, <span class="string">'n_title'</span>=&gt;$n_title, <span class="string">'n_content'</span>=&gt;$n_content,<span class="string">'content-available'</span>=&gt;<span class="number">1</span>,<span class="string">'apns_production'</span>=&gt;<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">$obj = <span class="keyword">new</span> jpush($masterSecret,$appkeys);</span><br></pre></td></tr></table></figure>
 <p>　　我标红的位置，人家已经设置了1，为什么还不好用？经过Helperhaps大神的解释，好吧，我懂了！我们后台使用的过期的V2 api。</p>
 <p>　　特别提示：建议不要在客户端里写代码直接调用此 API。因为 Android apk 比较容易破解，别人很容易从客户端代码里找出来调用 JPush Remote API 所需要的保密信息，从而可以模拟到你的身份来发起恶意的推送。</p>
 <p>　　建议的使用方式是：调用 JPush Remote API 的代码放在你自己的应用服务器上。你自己的应用服务器对自己的客户端提供接口来推送消息。具体请参考推聊的作法：示例与代码。</p>
@@ -656,7 +656,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -667,7 +667,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -678,7 +678,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
