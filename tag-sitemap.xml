@@ -226,36 +226,8 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/pythton/</loc>
-        <lastmod>2018-10-27T03:35:52.799Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/%E7%88%AC%E8%99%AB/</loc>
-        <lastmod>2018-10-27T03:35:52.799Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/%E4%B9%9D%E5%AE%AB%E6%A0%BC/</loc>
-        <lastmod>2018-10-27T03:36:01.612Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/react-native-swiper/</loc>
         <lastmod>2018-10-27T03:36:06.608Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/react-native/</loc>
-        <lastmod>2018-10-27T03:36:11.351Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -268,15 +240,43 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/tags/react-native/</loc>
+        <lastmod>2018-10-27T05:03:46.612Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E4%B9%9D%E5%AE%AB%E6%A0%BC/</loc>
+        <lastmod>2018-10-27T05:03:46.612Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://yoursite.com/tags/Github/</loc>
-        <lastmod>2018-10-27T03:36:20.757Z</lastmod>
+        <lastmod>2018-10-27T05:08:37.817Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/Gitlab/</loc>
-        <lastmod>2018-10-27T03:36:20.757Z</lastmod>
+        <lastmod>2018-10-27T05:08:37.817Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/pythton/</loc>
+        <lastmod>2018-10-27T05:08:47.389Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E7%88%AC%E8%99%AB/</loc>
+        <lastmod>2018-10-27T05:08:47.389Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

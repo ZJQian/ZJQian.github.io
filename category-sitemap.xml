@@ -56,29 +56,29 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/categories/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-        <lastmod>2018-10-27T03:35:52.799Z</lastmod>
+        <loc>http://yoursite.com/categories/%E5%AE%9E%E7%94%A8/</loc>
+        <lastmod>2018-10-27T03:36:25.121Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/categories/react-native%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-        <lastmod>2018-10-27T03:36:11.351Z</lastmod>
+        <lastmod>2018-10-27T05:03:46.612Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/categories/git/</loc>
-        <lastmod>2018-10-27T03:36:20.757Z</lastmod>
+        <lastmod>2018-10-27T05:08:37.817Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/categories/%E5%AE%9E%E7%94%A8/</loc>
-        <lastmod>2018-10-27T03:36:25.121Z</lastmod>
+        <loc>http://yoursite.com/categories/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+        <lastmod>2018-10-27T05:08:47.389Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
