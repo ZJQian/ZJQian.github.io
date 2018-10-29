@@ -93,12 +93,12 @@
 <meta property="og:site_name" content="ZJQian&#39;s Blogs">
 <meta property="og:description" content="就是类似这种的列表. 在 iOS 中有 UICollectionView 可以直接写这种类型的列表, 但在React-native 中直接就可以用 FlatList 完成, 也就是说这种类型的列表和普通的列表没什么区别, 只是在布局的时候要些许的差异. Let’s do it!">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="file:///.file/id=6571367.8622824517">
-<meta property="og:updated_time" content="2018-10-29T01:27:37.291Z">
+<meta property="og:image" content="http://yoursite.com/images/20180817092853807.png">
+<meta property="og:updated_time" content="2018-10-29T02:41:00.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-native 之九宫格列表">
 <meta name="twitter:description" content="就是类似这种的列表. 在 iOS 中有 UICollectionView 可以直接写这种类型的列表, 但在React-native 中直接就可以用 FlatList 完成, 也就是说这种类型的列表和普通的列表没什么区别, 只是在布局的时候要些许的差异. Let’s do it!">
-<meta name="twitter:image" content="file:///.file/id=6571367.8622824517">
+<meta name="twitter:image" content="http://yoursite.com/images/20180817092853807.png">
 
 
 
@@ -405,6 +405,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -425,7 +430,7 @@
       
         <p>就是类似这种的列表. 在 iOS 中有 <code>UICollectionView</code> 可以直接写这种类型的列表, 但在<code>React-native</code> 中直接就可以用 <code>FlatList</code> 完成, 也就是说这种类型的列表和普通的列表没什么区别, 只是在布局的时候要些许的差异. Let’s do it!<br><a id="more"></a></p>
 <p>先上效果图:</p>
-<p><img src="file:///.file/id=6571367.8622824517" alt="" title="九宫格列表"></p>
+<p><img src="/images/20180817092853807.png" alt="九宫格列表"></p>
 <h2 id="1-渲染一个列表"><a href="#1-渲染一个列表" class="headerlink" title="1.渲染一个列表"></a>1.渲染一个列表</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">       return (</span><br><span class="line">           <span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">FlatList</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">data</span>=<span class="string">&#123;this.state.data&#125;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">renderItem</span>=<span class="string">&#123;this.renderItem&#125;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">keyExtractor</span>=<span class="string">&#123;(item,</span> <span class="attr">index</span>) =&gt;</span> index&#125;</span><br><span class="line">                   contentContainerStyle=&#123;styles.list_container&#125;</span><br><span class="line">               /&gt;</span><br><span class="line">           <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span><br><span class="line">       )</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="2-给列表一个样式"><a href="#2-给列表一个样式" class="headerlink" title="2. 给列表一个样式"></a>2. 给列表一个样式</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">list_container</span>: &#123;</span><br><span class="line">        // 主轴方向</span><br><span class="line">        <span class="selector-tag">flexDirection</span><span class="selector-pseudo">:'row'</span>,</span><br><span class="line">        justifyContent: 'space-between',</span><br><span class="line">        // 一行显示不下,换一行</span><br><span class="line">        <span class="selector-tag">flexWrap</span><span class="selector-pseudo">:'wrap'</span>,</span><br><span class="line">        // 侧轴方向</span><br><span class="line">        alignItems:'center', // 必须设置,否则换行不起作用</span><br><span class="line">        <span class="selector-tag">paddingHorizontal</span>: 20,</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
 <p><strong>这里注意:  <code>flexDirection</code>    <code>flexWrap</code>   <code>alignItems</code> 这三个属性是必须设置的.</strong> </p>
@@ -720,7 +725,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-渲染一个列表"><span class="nav-number">1.</span> <span class="nav-text">1.渲染一个列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-给列表一个样式"><span class="nav-number">2.</span> <span class="nav-text">2. 给列表一个样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-渲染一个列表"><span class="nav-text">1.渲染一个列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-给列表一个样式"><span class="nav-text">2. 给列表一个样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整代码"><span class="nav-text">完整代码:</span></a></li></ol></div>
             
 
           </div>
@@ -740,8 +745,7 @@ var jiathis_config={
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -756,9 +760,41 @@ var jiathis_config={
 
 
 
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style="display:none">
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style="display:none">
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
