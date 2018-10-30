@@ -85,19 +85,19 @@
 
 
 
-<meta name="description" content="上一篇文章记录了一下RN跳转原生的一些操作, 这次记录一下原生跳转 RN 页面的一些具体操作. 1.创建 rn 页面并注册创建页面 1234567891011121314151617import React, &amp;#123;Component&amp;#125; from &apos;react&apos;;import &amp;#123;    View,    Text&amp;#125; from &apos;react-native&apos;;exp">
+<meta name="description" content="上一篇文章记录了一下RN跳转原生的一些操作, 这次记录一下原生跳转 RN 页面的一些具体操作.">
 <meta name="keywords" content="原生跳转RN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react-native之原生跳转RN">
 <meta property="og:url" content="http://yoursite.com/2018/10/30/react-native之原生跳转RN/index.html">
 <meta property="og:site_name" content="ZJQian&#39;s Blogs">
-<meta property="og:description" content="上一篇文章记录了一下RN跳转原生的一些操作, 这次记录一下原生跳转 RN 页面的一些具体操作. 1.创建 rn 页面并注册创建页面 1234567891011121314151617import React, &amp;#123;Component&amp;#125; from &apos;react&apos;;import &amp;#123;    View,    Text&amp;#125; from &apos;react-native&apos;;exp">
+<meta property="og:description" content="上一篇文章记录了一下RN跳转原生的一些操作, 这次记录一下原生跳转 RN 页面的一些具体操作.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/gif2.gif">
-<meta property="og:updated_time" content="2018-10-30T03:08:19.529Z">
+<meta property="og:updated_time" content="2018-10-30T03:15:38.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-native之原生跳转RN">
-<meta name="twitter:description" content="上一篇文章记录了一下RN跳转原生的一些操作, 这次记录一下原生跳转 RN 页面的一些具体操作. 1.创建 rn 页面并注册创建页面 1234567891011121314151617import React, &amp;#123;Component&amp;#125; from &apos;react&apos;;import &amp;#123;    View,    Text&amp;#125; from &apos;react-native&apos;;exp">
+<meta name="twitter:description" content="上一篇文章记录了一下RN跳转原生的一些操作, 这次记录一下原生跳转 RN 页面的一些具体操作.">
 <meta name="twitter:image" content="http://yoursite.com/images/gif2.gif">
 
 
@@ -423,7 +423,7 @@
       
 
       
-        <p><a href="https://zjqian.github.io/2018/10/29/react-native%E4%B9%8BRN%E8%B7%B3%E8%BD%AC%E5%8E%9F%E7%94%9F%E7%95%8C%E9%9D%A2/" target="_blank" rel="noopener">上一篇文章</a>记录了一下RN跳转原生的一些操作, 这次记录一下原生跳转 RN 页面的一些具体操作.</p>
+        <p><a href="https://zjqian.github.io/2018/10/29/react-native%E4%B9%8BRN%E8%B7%B3%E8%BD%AC%E5%8E%9F%E7%94%9F%E7%95%8C%E9%9D%A2/" target="_blank" rel="noopener">上一篇文章</a>记录了一下RN跳转原生的一些操作, 这次记录一下原生跳转 RN 页面的一些具体操作.<br><a id="more"></a></p>
 <h2 id="1-创建-rn-页面并注册"><a href="#1-创建-rn-页面并注册" class="headerlink" title="1.创建 rn 页面并注册"></a>1.创建 rn 页面并注册</h2><p><strong>创建页面</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    View,</span><br><span class="line">    Text</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;View style=&#123;&#123;<span class="attr">flex</span>: <span class="number">1</span>,<span class="attr">backgroundColor</span>: <span class="string">'red'</span>&#125;&#125;&gt;</span><br><span class="line">                &lt;Text style=&#123;&#123;<span class="attr">marginTop</span>: <span class="number">100</span>&#125;&#125;&gt; 这是 RN 页面&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>View&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>在入口函数中注册组件</strong></p>
