@@ -49,13 +49,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/categories/iOS-%E4%B9%8B-runtime/</loc>
-        <lastmod>2018-10-27T03:35:32.716Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/categories/git/</loc>
         <lastmod>2018-10-29T02:37:28.203Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -79,6 +72,13 @@
     <url>
         <loc>http://yoursite.com/categories/react-native%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
         <lastmod>2018-11-01T05:18:53.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/categories/iOS-%E4%B9%8B-runtime/</loc>
+        <lastmod>2018-11-05T06:36:17.218Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

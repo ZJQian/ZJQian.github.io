@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2018/04/03/Method_Swizzling_and_AOP/</loc>
+        <lastmod>2018-11-05T06:36:17.218Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2018/11/01/react-native%E4%B9%8Brun-android%E6%8A%A5%E9%94%99-SDK-location-not-found/</loc>
         <lastmod>2018-11-01T05:18:53.423Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -81,14 +89,6 @@
     <url>
         <loc>http://yoursite.com/2018/10/27/React-native%20%E4%B9%8B%20react-native-swiper%20%E5%8A%A8%E6%80%81%E8%B5%8B%E5%80%BC/</loc>
         <lastmod>2018-10-27T03:36:06.608Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2018/04/03/Method_Swizzling_and_AOP/</loc>
-        <lastmod>2018-10-27T03:35:32.716Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -271,7 +271,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/03/31/rainNight/</loc>
+        <loc>http://yoursite.com/2017/06/07/hello-world/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -279,7 +279,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/06/07/hello-world/</loc>
+        <loc>http://yoursite.com/2017/03/31/rainNight/</loc>
         <lastmod>2017-06-07T13:00:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
