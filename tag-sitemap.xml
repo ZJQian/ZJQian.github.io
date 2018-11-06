@@ -261,13 +261,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/pythton/</loc>
-        <lastmod>2018-10-29T02:41:01.833Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/%E7%88%AC%E8%99%AB/</loc>
         <lastmod>2018-10-29T02:41:01.833Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -305,6 +298,20 @@
     <url>
         <loc>http://yoursite.com/tags/runtime/</loc>
         <lastmod>2018-11-05T06:36:17.218Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/pythton/</loc>
+        <lastmod>2018-11-06T06:13:40.915Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E8%AF%8D%E4%BA%91/</loc>
+        <lastmod>2018-11-06T06:13:40.915Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
