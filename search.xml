@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[FlexLib 之热门预览]]></title>
+    <url>%2F2019%2F01%2F25%2FFlexLib%E4%B9%8B%E7%83%AD%E9%97%A8%E9%A2%84%E8%A7%88%2F</url>
+    <content type="text"><![CDATA[设置环境 在应用启动时调用FlexRestorePreviewSetting。 1234567- （BOOL）应用程序：（UIApplication *）应用程序didFinishLaunchingWithOptions :( NSDictionary *）launchOptions&#123; FlexRestorePreviewSetting（）; //任何其他启动... 返回 YES ; &#125; 此功能对产品版本无效。 在Mac上启动HTTP Server。 1sudo apachectl start 在终端cd到您的项目目录，然后 12python -m SimpleHTTPServer 8000 ＃ for python 2.x python -m http.server 8000 ＃ for python 3.x 设置预览基本网址 打开预览设置页面，您可以使用以下方法之一： 出现FlexBaseVC的任何子类时按Command + D. 这是最简单的方法，但仅在DEBUG模式下可用。 在您的应用中调用FlexSetPreviewVC :: presentInVC以打开此页面。 然后，您可以设置预览基本URL。 预览xml布局的修改有三种方法可以做到： 出现FlexBaseVC子类时按Control + E. 这将打开“在线Flex Explorer”，然后您可以通过HTTP协议导航和查看xml布局。您也可以调用FlexHttpVC :: presentInVC使其可用。 出现视图控制器时按Command + R. 这将重新加载视图控制器布局，但不会调用任何启动方法，如viewDidLoad。 在预览设置页面中，启用“在线加载资源”。然后所有布局都将由HTTP协议加载。您可以重新打开当前页面以刷新它。即使您的页面需要一些网络请求，这也可以正常工作。 注意：显示视图控制器时，应在模拟器上按下所有快捷方式，而不是在XCode中。 最好的方法是方法1和方法3。方法2有许多限制。 关于目录索引在预览设置页面上，您可以创建目录索引。这将遍历所有文件夹以提取xml布局。在此之后，框架可以轻松地按名称查找布局。否则，框架将从预览库url +’flexname.xml’加载布局。 转自：https://github.com/zhenglibao/FlexLib/wiki/Hot-preview#setup-environment]]></content>
+      <categories>
+        <category>iOS 实用</category>
+      </categories>
+      <tags>
+        <tag>FlexLib</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ios 仿写有妖气]]></title>
     <url>%2F2018%2F12%2F20%2Fios-%E4%BB%BF%E5%86%99%E6%9C%89%E5%A6%96%E6%B0%94%2F</url>
     <content type="text"><![CDATA[有妖气仿写闲来无事，App Store 里随便抓了一个爱派派进行一些仿写。 首先声明：如有冒犯或侵权行为，请随时联系告知，我会立刻删除相关文件或资源。 本次仿写是通过 charles 进行接口抓包， 然后代码是 MVC 格式进行书写；为了练习一下布局方式， 该项目采用了三种第三方库进行布局,，分别是Masonry 、SDAutoLayout、YogaKit 。 各自的特点 ： Masonry：适用于大部分情况下的布局，易操作。缺点是代码量稍微多。 SDAutoLayout：在自适应 cell 行高的情况下，具有优势。 YogaKit：前端的flexbox布局方式，在普通视图中，如果不想事先设置视图的高度或宽度，可以考虑用该布局方式，代码清晰明了，易于理解。缺点是代码繁琐。 示例代码：Masonry： 123[self.img_bg mas_makeConstraints:^(MASConstraintMaker *make) &#123; make.edges.mas_equalTo(self.contentView); &#125;]; SDAutoLayout： 12345self.img_cover.sd_layout .leftEqualToView(self.contentView) .topEqualToView(self.contentView) .rightEqualToView(self.contentView) .autoHeightRatio(296.0/504.0); YogaKit： 12345678910UIView *v_header2 = [UIView new];[v_header addSubview:v_header2];[v_header2 configureLayoutWithBlock:^(YGLayout * _Nonnull layout) &#123; layout.isEnabled = YES; layout.alignItems = YGAlignCenter; layout.flexDirection = YGFlexDirectionRow; layout.marginHorizontal = YGPointValue(12); layout.position = YGPositionTypeAbsolute;&#125;]; 该项目实现的功能点： 选项卡的应用。 tableView 多种cell 的应用。 广告页的应用。 皮肤切换的应用。 对网络请求的封装。 对普通 tableView 页面的封装。 对一些第三方库的应用。 效果图如下： 项目地址]]></content>
